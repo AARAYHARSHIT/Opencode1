@@ -1,5 +1,5 @@
 import { ScrollReveal, StaggerContainer, StaggerItem, HoverLift } from "@/components/animations";
-import { Scene3D } from "@/components/three-scene";
+import { Scene3DWrapper } from "@/components/scene3d-wrapper";
 import Link from "next/link";
 
 export default function Home() {
@@ -39,11 +39,7 @@ export default function Home() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal direction="up" delay={0.1}>
-          <div className="mt-12 xs:mt-16 lg:mt-20">
-            <Scene3D />
-          </div>
-        </ScrollReveal>
+        <Scene3DWrapper />
 
         <StaggerContainer staggerDelay={0.1} className="mt-12 xs:mt-16 lg:mt-20">
           <StaggerItem>

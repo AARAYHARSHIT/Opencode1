@@ -1,8 +1,9 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Float, Html } from "@react-three/drei";
+import { OrbitControls, Html } from "@react-three/drei";
 import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import { motion } from "motion/react";
 import * as THREE from "three";
 
@@ -16,13 +17,7 @@ export function Scene3D() {
       >
         <ambientLight intensity={0.8} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
-        <Float
-          rotationIntensity={0.5}
-          floatIntensity={0.5}
-          speed={1}
-        >
-          <Mesh />
-        </Float>
+        <Mesh />
         <OrbitControls enablePan={false} enableZoom={false} autoRotate={true} autoRotateSpeed={0.5} />
       </Canvas>
       <Html
@@ -50,6 +45,13 @@ export function Scene3D() {
 function Mesh() {
   const meshRef = useRef<THREE.Mesh>(null!);
   const groupRef = useRef<THREE.Group>(null!);
+
+  useFrame((_state: any, delta: number) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y += delta * 0.2;
+      groupRef.current.rotation.x += delta * 0.1;
+    }
+  });
 
   return (
     <group ref={groupRef}>
