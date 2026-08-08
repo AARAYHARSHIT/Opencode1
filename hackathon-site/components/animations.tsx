@@ -65,15 +65,6 @@ export function StaggerContainer({
     },
   };
 
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const },
-    },
-  };
-
   return (
     <motion.div
       initial="hidden"
@@ -81,9 +72,7 @@ export function StaggerContainer({
       variants={containerVariants}
       className={className}
     >
-      {React.Children.map(children, (child) =>
-        React.isValidElement(child) ? React.cloneElement(child, { variants: itemVariants }) : child
-      )}
+      {children}
     </motion.div>
   );
 }
@@ -91,13 +80,21 @@ export function StaggerContainer({
 interface StaggerItemProps {
   children: React.ReactNode;
   className?: string;
-  variants?: Variants;
 }
 
-export function StaggerItem({ children, className = "", variants }: StaggerItemProps) {
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const },
+  },
+};
+
+export function StaggerItem({ children, className = "" }: StaggerItemProps) {
   return (
     <motion.div
-      variants={variants}
+      variants={itemVariants}
       className={className}
     >
       {children}
@@ -142,7 +139,7 @@ export function GestureCard({
       dragConstraints={{ left: -100, right: 100, top: -50, bottom: 50 }}
       dragElastic={0.2}
       onDragEnd={onDragEnd}
-      whileDrag={{ rotate: (_, { x }) => x * 0.05, scale: 1.02 }}
+      whileDrag={{ scale: 1.02 }}
       className={`${className} cursor-grab active:cursor-grabbing`}
     >
       {children}
