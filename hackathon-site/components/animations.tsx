@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -15,7 +15,7 @@ export function ScrollReveal({
   delay = 0,
   direction = "up",
 }: ScrollRevealProps) {
-  const variants = {
+  const variants: Variants = {
     hidden: {
       opacity: 0,
       y: direction === "up" ? 30 : direction === "down" ? -30 : 0,
@@ -27,7 +27,7 @@ export function ScrollReveal({
       x: 0,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
       },
     },
   };
@@ -57,20 +57,33 @@ export function StaggerContainer({
   className = "",
   staggerDelay = 0.1,
 }: StaggerContainerProps) {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: staggerDelay },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    },
+  };
+
   return (
     <motion.div
       initial="hidden"
       animate="visible"
-      variants={{
-        hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: { staggerChildren: staggerDelay },
-        },
-      }}
+      variants={containerVariants}
       className={className}
     >
-      {children}
+      {React.Children.map(children, (child) =>
+        React.isValidElement(child) ? React.cloneElement(child, { variants: itemVariants }) : child
+      )}
     </motion.div>
   );
 }
@@ -78,19 +91,13 @@ export function StaggerContainer({
 interface StaggerItemProps {
   children: React.ReactNode;
   className?: string;
+  variants?: Variants;
 }
 
-export function StaggerItem({ children, className = "" }: StaggerItemProps) {
+export function StaggerItem({ children, className = "", variants }: StaggerItemProps) {
   return (
     <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
-        },
-      }}
+      variants={variants}
       className={className}
     >
       {children}
@@ -116,10 +123,12 @@ export function HoverLift({ children, className = "", lift = -8 }: HoverLiftProp
   );
 }
 
+import { PanInfo } from "motion/react";
+
 interface GestureCardProps {
   children: React.ReactNode;
   className?: string;
-  onDragEnd?: (info: { x: number; y: number }) => void;
+  onDragEnd?: (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => void;
 }
 
 export function GestureCard({
@@ -140,3 +149,5 @@ export function GestureCard({
     </motion.div>
   );
 }
+
+import React from "react";

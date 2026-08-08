@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Float, Html } from "@react-three/drei";
 import { useRef } from "react";
 import { motion } from "motion/react";
+import * as THREE from "three";
 
 export function Scene3D() {
   return (
@@ -75,14 +76,4 @@ function Mesh() {
       </mesh>
     </group>
   );
-}
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      torusKnotGeometry: any;
-      meshPhysicalMaterial: any;
-      meshBasicMaterial: any;
-    }
-  }
 }
