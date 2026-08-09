@@ -299,7 +299,7 @@ function DashboardContent() {
 
           <ScrollReveal direction="up" delay={0.35}>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {require("@/lib/data").getAchievements(variant).slice(0, 6).map((achievement) => (
+              {getChallengeData(variant).achievements.slice(0, 6).map((achievement: any) => (
                 <Card key={achievement.id} variant="outlined" padding="md" className={achievement.unlockedAt ? "" : "opacity-50"}>
                   <div className="flex items-start gap-3">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl bg-palette-neutral-100 dark:bg-palette-neutral-800 flex-shrink-0">
