@@ -135,7 +135,6 @@ CircularProgress.displayName = "CircularProgress";
 
 export interface StepProgressProps {
   currentStep: number;
-  totalSteps: number;
   steps: Array<{ label: string; description?: string; completed?: boolean; current?: boolean }>;
   variant?: "default" | "compact";
   direction?: "horizontal" | "vertical";

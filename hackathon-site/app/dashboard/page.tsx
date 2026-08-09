@@ -4,18 +4,19 @@ import { useState } from "react";
 import Link from "next/link";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
 import { MobileHeader, PageContainer, MobileNav } from "@/components/ui/mobile-nav";
-import { SectionHeader, DayHeader } from "@/components/ui/section-header";
-import { Card, CardContent } from "@/components/ui/card";
+import { SectionHeader } from "@/components/ui/section-header";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge, StatusBadge } from "@/components/ui/badge";
 import { Progress, CircularProgress, StepProgress } from "@/components/ui/progress";
-import { StreakDisplay, StreakFlame } from "@/components/ui/streak-display";
-import { EmptyState, EmptyProfileState } from "@/components/ui/empty-state";
+import { StreakFlame, StreakDisplay } from "@/components/ui/streak-display";
+import { EmptyProfileState } from "@/components/ui/empty-state";
 import { 
   getChallengeData, 
   getDashboardStats, 
   getDaysWithStatus, 
   getTodayTask,
+  getTodayDayNumber,
   getStudentProfile,
   getStreakInfo,
   isProfileEmpty,
@@ -55,7 +56,7 @@ function DashboardContent() {
     <div className="min-h-screen">
       <MobileHeader 
         title="Dashboard" 
-        subtitle={`Day ${stats.dayNumber} of ${stats.daysTotal}`}
+        subtitle={`Day ${getTodayDayNumber(variant)} of ${stats.daysTotal}`}
         showStreak={true}
       />
       
@@ -84,7 +85,7 @@ function DashboardContent() {
               <Card variant="elevated" padding="lg">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
-                    <p className="text-caption text-palette-neutral-500 dark:text-palette-neutral-400 font-medium uppercase tracking-wider">Today's Status</p>
+                    <p className="text-caption text-palette-neutral-500 dark:text-palette-neutral-400 font-medium uppercase tracking-wider">Today&apos;s Status</p>
                     <StatusBadge status={stats.todayStatus} size="lg" />
                   </div>
                   <div className="w-16 h-16 xs:w-20 xs:h-20">
@@ -261,7 +262,7 @@ function DashboardContent() {
                     <tbody>
                       {daysWithStatus.map(({ day, status }) => {
                         const task = track.days.find(d => d.day === day);
-                        const isToday = day === stats.dayNumber;
+                        const isToday = day === getTodayDayNumber(variant);
                         return (
                           <tr key={day} className={`border-b border-palette-neutral-100 dark:border-palette-neutral-800 ${isToday ? "bg-palette-primary-50 dark:bg-palette-primary-950/20" : ""} transition-colors hover:bg-palette-neutral-50 dark:hover:bg-palette-neutral-900/50`}>
                             <td className="py-3 font-mono font-medium text-body-sm text-palette-neutral-900 dark:text-palette-neutral-50">
@@ -329,7 +330,7 @@ function DashboardContent() {
                   <p className="text-heading-md font-semibold text-palette-neutral-900 dark:text-palette-neutral-50">Keep the streak alive</p>
                   <p className="mt-1 text-body-md text-palette-neutral-600 dark:text-palette-neutral-400">Complete today's task before midnight to extend your streak to {streakInfo.current + 1} days.</p>
                 </div>
-                <Link href={`/day/${todayTask?.day || stats.dayNumber}`}>
+                <Link href={`/day/${todayTask?.day || getTodayDayNumber(variant)}`}>
                   <Button size="lg" className="w-full xs:w-auto">
                     Continue Challenge →
                   </Button>
