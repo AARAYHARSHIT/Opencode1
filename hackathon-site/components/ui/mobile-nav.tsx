@@ -56,13 +56,14 @@ const navItems: NavItem[] = [
 
 export function MobileNav({ variant = "bottom", className = "" }: { variant?: "bottom" | "top" | "floating"; className?: string }) {
   const pathname = usePathname();
-  const mountedRef = useRef(false);
+  const [mounted, setMounted] = useState(false);
   
   useEffect(() => {
-    mountedRef.current = true;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
   }, []);
   
-  if (!mountedRef.current) {
+  if (!mounted) {
     return null;
   }
   
@@ -182,6 +183,7 @@ export function MobileHeader({
   const streakInfo = getStreakInfo("default");
   
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
   
@@ -227,15 +229,15 @@ export function MobileHeader({
 }
 
 export function DesktopHeader({
-  title,
-  subtitle,
+  _title,
+  _subtitle,
   showStreak = true,
   navigation = true,
   user,
   className = "",
 }: {
-  title: string;
-  subtitle?: string;
+  _title: string;
+  _subtitle?: string;
   showStreak?: boolean;
   navigation?: boolean;
   user?: { name: string; avatar?: string };
