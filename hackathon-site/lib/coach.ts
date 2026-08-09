@@ -1,8 +1,6 @@
 import {
-  getStudentProfile,
   getStreakInfo,
   getTodayDayNumber,
-  getTodayTask,
   getCompletionPercentage,
   isProfileEmpty,
   getTrack,
@@ -106,7 +104,6 @@ export function generateCoachMessage(ctx: CoachContext): CoachMessage {
 }
 
 export function getCoachContext(variant: DataVariant = "default"): CoachContext {
-  const profile = getStudentProfile(variant);
   const streak = getStreakInfo(variant);
   const todayDay = getTodayDayNumber(variant);
   const completion = getCompletionPercentage(variant);

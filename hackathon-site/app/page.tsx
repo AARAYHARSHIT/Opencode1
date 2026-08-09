@@ -143,7 +143,7 @@ export default function Home() {
             />
 
             <StaggerContainer staggerDelay={0.1} className="mt-12">
-              {howItWorks.map((item, index) => (
+              {howItWorks.map((item) => (
                 <StaggerItem key={item.step}>
                   <HoverLift className="bg-palette-neutral-50 dark:bg-palette-neutral-900 rounded-2xl p-6 xs:p-8 border border-palette-neutral-200 dark:border-palette-neutral-800">
                     <div className="flex flex-col xs:flex-row xs:items-start gap-4 xs:gap-6">
@@ -172,7 +172,7 @@ export default function Home() {
             />
 
             <StaggerContainer staggerDelay={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {socialProof.map((item, index) => (
+              {socialProof.map((item) => (
                 <StaggerItem key={item.name}>
                   <Card variant="elevated" padding="lg" className="h-full">
                     <div className="flex items-center gap-3 mb-4">
