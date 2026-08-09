@@ -45,7 +45,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <HoverLift
-        asChild
         className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${widthStyles} ${className}`}
       >
         <button
