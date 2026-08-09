@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
+import { ScrollReveal } from "@/components/animations";
 import { MobileHeader, PageContainer, MobileNav } from "@/components/ui/mobile-nav";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Card } from "@/components/ui/card";
@@ -17,7 +17,6 @@ import {
   getDaysWithStatus, 
   getTodayTask,
   getTodayDayNumber,
-  getStudentProfile,
   getStreakInfo,
   isProfileEmpty,
   getTrack
@@ -27,7 +26,6 @@ import { generateCoachMessage, getCoachContext } from "@/lib/coach";
 const variant = "default";
 
 function DashboardContent() {
-  const profile = getStudentProfile(variant);
   const stats = getDashboardStats(variant);
   const streakInfo = getStreakInfo(variant);
   const daysWithStatus = getDaysWithStatus(variant);
@@ -300,7 +298,7 @@ function DashboardContent() {
 
           <ScrollReveal direction="up" delay={0.35}>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {getChallengeData(variant).achievements.slice(0, 6).map((achievement: any) => (
+              {getChallengeData(variant).achievements.slice(0, 6).map((achievement: { id: string; title: string; description: string; icon: string; unlockedAt?: string; progress: number; target: number }) => (
                 <Card key={achievement.id} variant="outlined" padding="md" className={achievement.unlockedAt ? "" : "opacity-50"}>
                   <div className="flex items-start gap-3">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl bg-palette-neutral-100 dark:bg-palette-neutral-800 flex-shrink-0">
@@ -328,7 +326,7 @@ function DashboardContent() {
               <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-4">
                 <div>
                   <p className="text-heading-md font-semibold text-palette-neutral-900 dark:text-palette-neutral-50">Keep the streak alive</p>
-                  <p className="mt-1 text-body-md text-palette-neutral-600 dark:text-palette-neutral-400">Complete today's task before midnight to extend your streak to {streakInfo.current + 1} days.</p>
+                  <p className="mt-1 text-body-md text-palette-neutral-600 dark:text-palette-neutral-400">Complete today&apos;s task before midnight to extend your streak to {streakInfo.current + 1} days.</p>
                 </div>
                 <Link href={`/day/${todayTask?.day || getTodayDayNumber(variant)}`}>
                   <Button size="lg" className="w-full xs:w-auto">

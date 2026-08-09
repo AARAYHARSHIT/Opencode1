@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
+import { ScrollReveal } from "@/components/animations";
 import { MobileHeader, PageContainer, MobileNav } from "@/components/ui/mobile-nav";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -14,9 +14,7 @@ import {
   getTaskByDay,
   getSubmissionByDay,
   getDayStatus,
-  getStreakInfo,
   getTodayDayNumber,
-  getDashboardStats,
 } from "@/lib/data";
 import { generateCoachMessage, getCoachContext } from "@/lib/coach";
 import type { DataVariant } from "@/lib/types";
