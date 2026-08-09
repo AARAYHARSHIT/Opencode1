@@ -142,7 +142,7 @@ export function MobileNav({ variant = "bottom", className = "" }: { variant?: "b
   
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 ${className}`}
+      className={`sticky top-0 z-40 ${className}`}
       aria-label="Mobile navigation"
     >
       <div className="glass-strong border-b border-white/10 px-4 py-3 safe-area-top">
@@ -192,7 +192,7 @@ export function MobileHeader({
   }
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 glass-strong border-b border-white/10 px-4 py-3 safe-area-top ${className}`}>
+    <header className={`sticky top-0 z-40 glass-strong border-b border-white/10 px-4 py-3 safe-area-top ${className}`}>
       <div className="flex items-center justify-between gap-4 h-12 xs:h-14">
         <div className="flex items-center gap-3 flex-1 min-w-0">
           {showBack && (

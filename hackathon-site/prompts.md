@@ -117,14 +117,23 @@ This document logs all AI-assisted prompts used to build the 60-Day Coding Chall
 
 ---
 
+## Session 5: UI/UX Scroll & Layout Fixes
+
+### Prompt 16
+> Fix the hero section so it scrolls away naturally instead of staying fixed/sticky. Change MobileHeader from fixed to sticky positioning so content scrolls smoothly underneath. Ensure proper page structure with hero, content, and footer in vertical flow.
+
+**AI Output:** Changed `MobileHeader` from `fixed top-0` to `sticky top-0 z-40` in `components/ui/mobile-nav.tsx`. Updated default MobileNav header variant from `fixed` to `sticky`. Header now scrolls away naturally with the page content. Smooth scrolling already enabled via `scroll-behavior: smooth` in `globals.css`.
+
+---
+
 ## Summary
 
 | Metric | Count |
 |--------|-------|
-| Total Prompts | 15 |
+| Total Prompts | 16 |
 | Files Created | 13 |
-| Files Modified | 6 |
-| Lines of Code | ~2,900+ |
+| Files Modified | 7 |
+| Lines of Code | ~2,950+ |
 | Components Built | 15+ |
 | Pages Implemented | 6 |
 
