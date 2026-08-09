@@ -1,0 +1,254 @@
+{
+  "variants": [
+    {
+      "variant": "default",
+      "data": {
+        "profile": {
+          "id": "student-001",
+          "name": "Alex Chen",
+          "email": "alex.chen@example.com",
+          "avatar": "/avatars/alex.jpg",
+          "joinDate": "2024-01-15",
+          "totalDays": 60,
+          "completedDays": 18,
+          "currentStreak": 7,
+          "longestStreak": 12,
+          "totalXP": 2840,
+          "level": 3
+        },
+        "track": {
+          "id": "60-day-coding-challenge",
+          "title": "60-Day Coding Challenge",
+          "description": "Build a habit of daily coding with progressive difficulty",
+          "totalDays": 60,
+          "startDate": "2024-01-15",
+          "endDate": "2024-03-15",
+          "days": [
+            { "id": "day-1", "day": 1, "title": "Hello World", "description": "Set up your dev environment and write your first program", "xpReward": 50, "estimatedMinutes": 30, "category": "coding", "difficulty": "easy", "completed": true, "completedAt": "2024-01-15T10:00:00Z", "submissionId": "sub-1" },
+            { "id": "day-2", "day": 2, "title": "Variables & Types", "description": "Learn about variables, data types, and type inference", "xpReward": 50, "estimatedMinutes": 45, "category": "coding", "difficulty": "easy", "completed": true, "completedAt": "2024-01-16T10:00:00Z", "submissionId": "sub-2" },
+            { "id": "day-3", "day": 3, "title": "Control Flow", "description": "Master if/else, switch, and ternary operators", "xpReward": 60, "estimatedMinutes": 45, "category": "coding", "difficulty": "easy", "completed": true, "completedAt": "2024-01-17T10:00:00Z", "submissionId": "sub-3" },
+            { "id": "day-4", "day": 4, "title": "Loops", "description": "Practice for, while, and do-while loops", "xpReward": 60, "estimatedMinutes": 60, "category": "coding", "difficulty": "easy", "completed": true, "completedAt": "2024-01-18T10:00:00Z", "submissionId": "sub-4" },
+            { "id": "day-5", "day": 5, "title": "Functions Basics", "description": "Write reusable functions with parameters and return values", "xpReward": 70, "estimatedMinutes": 60, "category": "coding", "difficulty": "easy", "completed": true, "completedAt": "2024-01-19T10:00:00Z", "submissionId": "sub-5" },
+            { "id": "day-6", "day": 6, "title": "Arrays & Lists", "description": "Manipulate collections with map, filter, reduce", "xpReward": 70, "estimatedMinutes": 60, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-20T10:00:00Z", "submissionId": "sub-6" },
+            { "id": "day-7", "day": 7, "title": "Objects & Maps", "description": "Work with key-value data structures", "xpReward": 70, "estimatedMinutes": 60, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-21T10:00:00Z", "submissionId": "sub-7" },
+            { "id": "day-8", "day": 8, "title": "Error Handling", "description": "Try/catch, finally, and custom error types", "xpReward": 80, "estimatedMinutes": 45, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-22T10:00:00Z", "submissionId": "sub-8" },
+            { "id": "day-9", "day": 9, "title": "Async Basics", "description": "Promises, async/await, and fetch API", "xpReward": 80, "estimatedMinutes": 60, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-23T10:00:00Z", "submissionId": "sub-9" },
+            { "id": "day-10", "day": 10, "title": "Week 1 Review", "description": "Consolidate learning with a mini-project", "xpReward": 100, "estimatedMinutes": 120, "category": "practice", "difficulty": "medium", "completed": true, "completedAt": "2024-01-24T10:00:00Z", "submissionId": "sub-10" },
+            { "id": "day-11", "day": 11, "title": "DOM Manipulation", "description": "Select, create, and modify HTML elements", "xpReward": 80, "estimatedMinutes": 60, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-25T10:00:00Z", "submissionId": "sub-11" },
+            { "id": "day-12", "day": 12, "title": "Event Handling", "description": "Click, submit, keyboard, and custom events", "xpReward": 80, "estimatedMinutes": 60, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-26T10:00:00Z", "submissionId": "sub-12" },
+            { "id": "day-13", "day": 13, "title": "Forms & Validation", "description": "Build accessible forms with client-side validation", "xpReward": 90, "estimatedMinutes": 90, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-27T10:00:00Z", "submissionId": "sub-13" },
+            { "id": "day-14", "day": 14, "title": "CSS Fundamentals", "description": "Box model, flexbox, and grid layouts", "xpReward": 90, "estimatedMinutes": 90, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-28T10:00:00Z", "submissionId": "sub-14" },
+            { "id": "day-15", "day": 15, "title": "Responsive Design", "description": "Media queries, mobile-first, and container queries", "xpReward": 90, "estimatedMinutes": 90, "category": "coding", "difficulty": "medium", "completed": false },
+            { "id": "day-16", "day": 16, "title": "State Management", "description": "Local state, lifting state, and context API", "xpReward": 100, "estimatedMinutes": 90, "category": "coding", "difficulty": "hard", "completed": false },
+            { "id": "day-17", "day": 17, "title": "Side Effects", "description": "useEffect, cleanup, and dependency arrays", "xpReward": 100, "estimatedMinutes": 90, "category": "coding", "difficulty": "hard", "completed": false },
+            { "id": "day-18", "day": 18, "title": "Custom Hooks", "description": "Extract reusable logic into custom hooks", "xpReward": 100, "estimatedMinutes": 90, "category": "coding", "difficulty": "hard", "completed": false },
+            { "id": "day-19", "day": 19, "title": "Performance Optimization", "description": "Memo, useMemo, useCallback, and React DevTools", "xpReward": 110, "estimatedMinutes": 90, "category": "coding", "difficulty": "hard", "completed": false },
+            { "id": "day-20", "day": 20, "title": "Week 2 Review", "description": "Build a complete feature with React", "xpReward": 150, "estimatedMinutes": 180, "category": "practice", "difficulty": "hard", "completed": false }
+          ]
+        },
+        "submissions": [
+          { "id": "sub-1", "day": 1, "taskId": "day-1", "content": "console.log('Hello, World!')", "submittedAt": "2024-01-15T10:00:00Z", "status": "accepted", "feedback": "Perfect start!", "score": 100 },
+          { "id": "sub-2", "day": 2, "taskId": "day-2", "content": "let name = 'Alex'; const age = 25;", "submittedAt": "2024-01-16T10:00:00Z", "status": "accepted", "feedback": "Good understanding of let vs const", "score": 100 },
+          { "id": "sub-3", "day": 3, "taskId": "day-3", "content": "if (score >= 90) { grade = 'A'; }", "submittedAt": "2024-01-17T10:00:00Z", "status": "accepted", "feedback": "Clean conditional logic", "score": 100 },
+          { "id": "sub-4", "day": 4, "taskId": "day-4", "content": "for (let i = 0; i < 10; i++) { console.log(i); }", "submittedAt": "2024-01-18T10:00:00Z", "status": "accepted", "feedback": "Standard for loop syntax", "score": 100 },
+          { "id": "sub-5", "day": 5, "taskId": "day-5", "content": "function greet(name) { return `Hello, ${name}!`; }", "submittedAt": "2024-01-19T10:00:00Z", "status": "accepted", "feedback": "Template literals used correctly", "score": 100 },
+          { "id": "sub-6", "day": 6, "taskId": "day-6", "content": "const doubled = numbers.map(n => n * 2);", "submittedAt": "2024-01-20T10:00:00Z", "status": "accepted", "feedback": "Good use of map", "score": 100 },
+          { "id": "sub-7", "day": 7, "taskId": "day-7", "content": "const user = { name: 'Alex', skills: ['JS', 'React'] };", "submittedAt": "2024-01-21T10:00:00Z", "status": "accepted", "feedback": "Object syntax correct", "score": 100 },
+          { "id": "sub-8", "day": 8, "taskId": "day-8", "content": "try { risky(); } catch (e) { handle(e); }", "submittedAt": "2024-01-22T10:00:00Z", "status": "accepted", "feedback": "Error handling structure good", "score": 100 },
+          { "id": "sub-9", "day": 9, "taskId": "day-9", "content": "async function fetchData() { const res = await fetch(url); }", "submittedAt": "2024-01-23T10:00:00Z", "status": "accepted", "feedback": "Async/await used properly", "score": 100 },
+          { "id": "sub-10", "day": 10, "taskId": "day-10", "content": "Mini calculator app with basic operations", "submittedAt": "2024-01-24T10:00:00Z", "status": "accepted", "feedback": "Great consolidation project!", "score": 95 },
+          { "id": "sub-11", "day": 11, "taskId": "day-11", "content": "document.querySelector('.btn').addEventListener(...)", "submittedAt": "2024-01-25T10:00:00Z", "status": "accepted", "feedback": "DOM selection correct", "score": 100 },
+          { "id": "sub-12", "day": 12, "taskId": "day-12", "content": "button.onclick = (e) => console.log('clicked');", "submittedAt": "2024-01-26T10:00:00Z", "status": "accepted", "feedback": "Event handler attached", "score": 100 },
+          { "id": "sub-13", "day": 13, "taskId": "day-13", "content": "Form with email validation and submit handler", "submittedAt": "2024-01-27T10:00:00Z", "status": "accepted", "feedback": "Accessible form structure", "score": 100 },
+          { "id": "sub-14", "day": 14, "taskId": "day-14", "content": "Flexbox card layout with responsive breakpoints", "submittedAt": "2024-01-28T10:00:00Z", "status": "accepted", "feedback": "Clean flexbox usage", "score": 100 }
+        ],
+        "streak": {
+          "current": 7,
+          "longest": 12,
+          "lastActiveDate": "2024-01-28",
+          "isActiveToday": true,
+          "freezeCount": 1,
+          "maxFreezes": 3
+        },
+        "achievements": [
+          { "id": "first-week", "title": "First Week Complete", "description": "Completed 7 days in a row", "icon": "🔥", "unlockedAt": "2024-01-21", "progress": 7, "target": 7, "category": "streak" },
+          { "id": "century", "title": "Century Club", "description": "Earned 1000+ XP", "icon": "💯", "unlockedAt": "2024-01-20", "progress": 1000, "target": 1000, "category": "xp" },
+          { "id": "level-3", "title": "Rising Star", "description": "Reached Level 3", "icon": "⭐", "unlockedAt": "2024-01-25", "progress": 3, "target": 3, "category": "xp" },
+          { "id": "streak-12", "title": "Dozen Streak", "description": "Achieved a 12-day streak", "icon": "🔥", "unlockedAt": "2024-01-28", "progress": 12, "target": 12, "category": "streak" },
+          { "id": "halfway", "title": "Halfway There", "description": "Completed 30 days", "icon": "🏁", "progress": 18, "target": 30, "category": "completion" }
+        ]
+      }
+    },
+    {
+      "variant": "fresh",
+      "data": {
+        "profile": {
+          "id": "student-002",
+          "name": "Jamie Rivera",
+          "email": "jamie.rivera@example.com",
+          "avatar": "/avatars/jamie.jpg",
+          "joinDate": "2024-02-01",
+          "totalDays": 60,
+          "completedDays": 0,
+          "currentStreak": 0,
+          "longestStreak": 0,
+          "totalXP": 0,
+          "level": 1
+        },
+        "track": {
+          "id": "60-day-coding-challenge",
+          "title": "60-Day Coding Challenge",
+          "description": "Build a habit of daily coding with progressive difficulty",
+          "totalDays": 60,
+          "startDate": "2024-02-01",
+          "endDate": "2024-04-01",
+          "days": [
+            { "id": "day-1", "day": 1, "title": "Hello World", "description": "Set up your dev environment and write your first program", "xpReward": 50, "estimatedMinutes": 30, "category": "coding", "difficulty": "easy", "completed": false },
+            { "id": "day-2", "day": 2, "title": "Variables & Types", "description": "Learn about variables, data types, and type inference", "xpReward": 50, "estimatedMinutes": 45, "category": "coding", "difficulty": "easy", "completed": false },
+            { "id": "day-3", "day": 3, "title": "Control Flow", "description": "Master if/else, switch, and ternary operators", "xpReward": 60, "estimatedMinutes": 45, "category": "coding", "difficulty": "easy", "completed": false },
+            { "id": "day-4", "day": 4, "title": "Loops", "description": "Practice for, while, and do-while loops", "xpReward": 60, "estimatedMinutes": 60, "category": "coding", "difficulty": "easy", "completed": false },
+            { "id": "day-5", "day": 5, "title": "Functions Basics", "description": "Write reusable functions with parameters and return values", "xpReward": 70, "estimatedMinutes": 60, "category": "coding", "difficulty": "easy", "completed": false },
+            { "id": "day-6", "day": 6, "title": "Arrays & Lists", "description": "Manipulate collections with map, filter, reduce", "xpReward": 70, "estimatedMinutes": 60, "category": "coding", "difficulty": "medium", "completed": false },
+            { "id": "day-7", "day": 7, "title": "Objects & Maps", "description": "Work with key-value data structures", "xpReward": 70, "estimatedMinutes": 60, "category": "coding", "difficulty": "medium", "completed": false },
+            { "id": "day-8", "day": 8, "title": "Error Handling", "description": "Try/catch, finally, and custom error types", "xpReward": 80, "estimatedMinutes": 45, "category": "coding", "difficulty": "medium", "completed": false },
+            { "id": "day-9", "day": 9, "title": "Async Basics", "description": "Promises, async/await, and fetch API", "xpReward": 80, "estimatedMinutes": 60, "category": "coding", "difficulty": "medium", "completed": false },
+            { "id": "day-10", "day": 10, "title": "Week 1 Review", "description": "Consolidate learning with a mini-project", "xpReward": 100, "estimatedMinutes": 120, "category": "practice", "difficulty": "medium", "completed": false }
+          ]
+        },
+        "submissions": [],
+        "streak": {
+          "current": 0,
+          "longest": 0,
+          "lastActiveDate": "",
+          "isActiveToday": false,
+          "freezeCount": 0,
+          "maxFreezes": 3
+        },
+        "achievements": [
+          { "id": "first-week", "title": "First Week Complete", "description": "Completed 7 days in a row", "icon": "🔥", "progress": 0, "target": 7, "category": "streak" },
+          { "id": "century", "title": "Century Club", "description": "Earned 1000+ XP", "icon": "💯", "progress": 0, "target": 1000, "category": "xp" },
+          { "id": "level-3", "title": "Rising Star", "description": "Reached Level 3", "icon": "⭐", "progress": 1, "target": 3, "category": "xp" },
+          { "id": "halfway", "title": "Halfway There", "description": "Completed 30 days", "icon": "🏁", "progress": 0, "target": 30, "category": "completion" }
+        ]
+      }
+    },
+    {
+      "variant": "missed-day",
+      "data": {
+        "profile": {
+          "id": "student-003",
+          "name": "Taylor Kim",
+          "email": "taylor.kim@example.com",
+          "avatar": "/avatars/taylor.jpg",
+          "joinDate": "2024-01-10",
+          "totalDays": 60,
+          "completedDays": 22,
+          "currentStreak": 0,
+          "longestStreak": 15,
+          "totalXP": 3420,
+          "level": 4
+        },
+        "track": {
+          "id": "60-day-coding-challenge",
+          "title": "60-Day Coding Challenge",
+          "description": "Build a habit of daily coding with progressive difficulty",
+          "totalDays": 60,
+          "startDate": "2024-01-10",
+          "endDate": "2024-03-10",
+          "days": [
+            { "id": "day-1", "day": 1, "title": "Hello World", "description": "Set up your dev environment and write your first program", "xpReward": 50, "estimatedMinutes": 30, "category": "coding", "difficulty": "easy", "completed": true, "completedAt": "2024-01-10T10:00:00Z", "submissionId": "sub-1" },
+            { "id": "day-2", "day": 2, "title": "Variables & Types", "description": "Learn about variables, data types, and type inference", "xpReward": 50, "estimatedMinutes": 45, "category": "coding", "difficulty": "easy", "completed": true, "completedAt": "2024-01-11T10:00:00Z", "submissionId": "sub-2" },
+            { "id": "day-3", "day": 3, "title": "Control Flow", "description": "Master if/else, switch, and ternary operators", "xpReward": 60, "estimatedMinutes": 45, "category": "coding", "difficulty": "easy", "completed": true, "completedAt": "2024-01-12T10:00:00Z", "submissionId": "sub-3" },
+            { "id": "day-4", "day": 4, "title": "Loops", "description": "Practice for, while, and do-while loops", "xpReward": 60, "estimatedMinutes": 60, "category": "coding", "difficulty": "easy", "completed": true, "completedAt": "2024-01-13T10:00:00Z", "submissionId": "sub-4" },
+            { "id": "day-5", "day": 5, "title": "Functions Basics", "description": "Write reusable functions with parameters and return values", "xpReward": 70, "estimatedMinutes": 60, "category": "coding", "difficulty": "easy", "completed": true, "completedAt": "2024-01-14T10:00:00Z", "submissionId": "sub-5" },
+            { "id": "day-6", "day": 6, "title": "Arrays & Lists", "description": "Manipulate collections with map, filter, reduce", "xpReward": 70, "estimatedMinutes": 60, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-15T10:00:00Z", "submissionId": "sub-6" },
+            { "id": "day-7", "day": 7, "title": "Objects & Maps", "description": "Work with key-value data structures", "xpReward": 70, "estimatedMinutes": 60, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-16T10:00:00Z", "submissionId": "sub-7" },
+            { "id": "day-8", "day": 8, "title": "Error Handling", "description": "Try/catch, finally, and custom error types", "xpReward": 80, "estimatedMinutes": 45, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-17T10:00:00Z", "submissionId": "sub-8" },
+            { "id": "day-9", "day": 9, "title": "Async Basics", "description": "Promises, async/await, and fetch API", "xpReward": 80, "estimatedMinutes": 60, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-18T10:00:00Z", "submissionId": "sub-9" },
+            { "id": "day-10", "day": 10, "title": "Week 1 Review", "description": "Consolidate learning with a mini-project", "xpReward": 100, "estimatedMinutes": 120, "category": "practice", "difficulty": "medium", "completed": true, "completedAt": "2024-01-19T10:00:00Z", "submissionId": "sub-10" },
+            { "id": "day-11", "day": 11, "title": "DOM Manipulation", "description": "Select, create, and modify HTML elements", "xpReward": 80, "estimatedMinutes": 60, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-20T10:00:00Z", "submissionId": "sub-11" },
+            { "id": "day-12", "day": 12, "title": "Event Handling", "description": "Click, submit, keyboard, and custom events", "xpReward": 80, "estimatedMinutes": 60, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-21T10:00:00Z", "submissionId": "sub-12" },
+            { "id": "day-13", "day": 13, "title": "Forms & Validation", "description": "Build accessible forms with client-side validation", "xpReward": 90, "estimatedMinutes": 90, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-22T10:00:00Z", "submissionId": "sub-13" },
+            { "id": "day-14", "day": 14, "title": "CSS Fundamentals", "description": "Box model, flexbox, and grid layouts", "xpReward": 90, "estimatedMinutes": 90, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-23T10:00:00Z", "submissionId": "sub-14" },
+            { "id": "day-15", "day": 15, "title": "Responsive Design", "description": "Media queries, mobile-first, and container queries", "xpReward": 90, "estimatedMinutes": 90, "category": "coding", "difficulty": "medium", "completed": true, "completedAt": "2024-01-24T10:00:00Z", "submissionId": "sub-15" },
+            { "id": "day-16", "day": 16, "title": "State Management", "description": "Local state, lifting state, and context API", "xpReward": 100, "estimatedMinutes": 90, "category": "coding", "difficulty": "hard", "completed": false },
+            { "id": "day-17", "day": 17, "title": "Side Effects", "description": "useEffect, cleanup, and dependency arrays", "xpReward": 100, "estimatedMinutes": 90, "category": "coding", "difficulty": "hard", "completed": false },
+            { "id": "day-18", "day": 18, "title": "Custom Hooks", "description": "Extract reusable logic into custom hooks", "xpReward": 100, "estimatedMinutes": 90, "category": "coding", "difficulty": "hard", "completed": false },
+            { "id": "day-19", "day": 19, "title": "Performance Optimization", "description": "Memo, useMemo, useCallback, and React DevTools", "xpReward": 110, "estimatedMinutes": 90, "category": "coding", "difficulty": "hard", "completed": false },
+            { "id": "day-20", "day": 20, "title": "Week 2 Review", "description": "Build a complete feature with React", "xpReward": 150, "estimatedMinutes": 180, "category": "practice", "difficulty": "hard", "completed": false }
+          ]
+        },
+        "submissions": [
+          { "id": "sub-1", "day": 1, "taskId": "day-1", "content": "console.log('Hello, World!')", "submittedAt": "2024-01-10T10:00:00Z", "status": "accepted", "feedback": "Perfect start!", "score": 100 },
+          { "id": "sub-2", "day": 2, "taskId": "day-2", "content": "let name = 'Taylor'; const age = 24;", "submittedAt": "2024-01-11T10:00:00Z", "status": "accepted", "feedback": "Good understanding", "score": 100 },
+          { "id": "sub-3", "day": 3, "taskId": "day-3", "content": "if (score >= 90) { grade = 'A'; }", "submittedAt": "2024-01-12T10:00:00Z", "status": "accepted", "feedback": "Clean logic", "score": 100 },
+          { "id": "sub-4", "day": 4, "taskId": "day-4", "content": "for (let i = 0; i < 10; i++) { console.log(i); }", "submittedAt": "2024-01-13T10:00:00Z", "status": "accepted", "feedback": "Standard syntax", "score": 100 },
+          { "id": "sub-5", "day": 5, "taskId": "day-5", "content": "function greet(name) { return `Hello, ${name}!`; }", "submittedAt": "2024-01-14T10:00:00Z", "status": "accepted", "feedback": "Template literals", "score": 100 },
+          { "id": "sub-6", "day": 6, "taskId": "day-6", "content": "const doubled = numbers.map(n => n * 2);", "submittedAt": "2024-01-15T10:00:00Z", "status": "accepted", "feedback": "Good map usage", "score": 100 },
+          { "id": "sub-7", "day": 7, "taskId": "day-7", "content": "const user = { name: 'Taylor', skills: ['JS', 'React'] };", "submittedAt": "2024-01-16T10:00:00Z", "status": "accepted", "feedback": "Object syntax", "score": 100 },
+          { "id": "sub-8", "day": 8, "taskId": "day-8", "content": "try { risky(); } catch (e) { handle(e); }", "submittedAt": "2024-01-17T10:00:00Z", "status": "accepted", "feedback": "Error handling", "score": 100 },
+          { "id": "sub-9", "day": 9, "taskId": "day-9", "content": "async function fetchData() { const res = await fetch(url); }", "submittedAt": "2024-01-18T10:00:00Z", "status": "accepted", "feedback": "Async/await", "score": 100 },
+          { "id": "sub-10", "day": 10, "taskId": "day-10", "content": "Mini calculator app", "submittedAt": "2024-01-19T10:00:00Z", "status": "accepted", "feedback": "Great project!", "score": 95 },
+          { "id": "sub-11", "day": 11, "taskId": "day-11", "content": "document.querySelector('.btn').addEventListener(...)", "submittedAt": "2024-01-20T10:00:00Z", "status": "accepted", "feedback": "DOM selection", "score": 100 },
+          { "id": "sub-12", "day": 12, "taskId": "day-12", "content": "button.onclick = (e) => console.log('clicked');", "submittedAt": "2024-01-21T10:00:00Z", "status": "accepted", "feedback": "Event handler", "score": 100 },
+          { "id": "sub-13", "day": 13, "taskId": "day-13", "content": "Form with validation", "submittedAt": "2024-01-22T10:00:00Z", "status": "accepted", "feedback": "Accessible form", "score": 100 },
+          { "id": "sub-14", "day": 14, "taskId": "day-14", "content": "Flexbox card layout", "submittedAt": "2024-01-23T10:00:00Z", "status": "accepted", "feedback": "Clean flexbox", "score": 100 },
+          { "id": "sub-15", "day": 15, "taskId": "day-15", "content": "Responsive design with media queries", "submittedAt": "2024-01-24T10:00:00Z", "status": "accepted", "feedback": "Mobile-first done", "score": 100 }
+        ],
+        "streak": {
+          "current": 0,
+          "longest": 15,
+          "lastActiveDate": "2024-01-24",
+          "isActiveToday": false,
+          "freezeCount": 2,
+          "maxFreezes": 3
+        },
+        "achievements": [
+          { "id": "first-week", "title": "First Week Complete", "description": "Completed 7 days in a row", "icon": "🔥", "unlockedAt": "2024-01-16", "progress": 7, "target": 7, "category": "streak" },
+          { "id": "century", "title": "Century Club", "description": "Earned 1000+ XP", "icon": "💯", "unlockedAt": "2024-01-18", "progress": 1000, "target": 1000, "category": "xp" },
+          { "id": "level-3", "title": "Rising Star", "description": "Reached Level 3", "icon": "⭐", "unlockedAt": "2024-01-20", "progress": 3, "target": 3, "category": "xp" },
+          { "id": "level-4", "title": "Code Master", "description": "Reached Level 4", "icon": "👑", "unlockedAt": "2024-01-23", "progress": 4, "target": 4, "category": "xp" },
+          { "id": "streak-15", "title": "Fortnight Streak", "description": "Achieved a 15-day streak", "icon": "🔥", "unlockedAt": "2024-01-24", "progress": 15, "target": 15, "category": "streak" },
+          { "id": "halfway", "title": "Halfway There", "description": "Completed 30 days", "icon": "🏁", "progress": 22, "target": 30, "category": "completion" }
+        ]
+      }
+    },
+    {
+      "variant": "empty-profile",
+      "data": {
+        "profile": {
+          "id": "student-004",
+          "name": "",
+          "email": "",
+          "avatar": "",
+          "joinDate": "",
+          "totalDays": 60,
+          "completedDays": 0,
+          "currentStreak": 0,
+          "longestStreak": 0,
+          "totalXP": 0,
+          "level": 1
+        },
+        "track": {
+          "id": "60-day-coding-challenge",
+          "title": "60-Day Coding Challenge",
+          "description": "Build a habit of daily coding with progressive difficulty",
+          "totalDays": 60,
+          "startDate": "",
+          "endDate": "",
+          "days": []
+        },
+        "submissions": [],
+        "streak": {
+          "current": 0,
+          "longest": 0,
+          "lastActiveDate": "",
+          "isActiveToday": false,
+          "freezeCount": 0,
+          "maxFreezes": 3
+        },
+        "achievements": []
+      }
+    }
+  ]
+}
