@@ -55,7 +55,7 @@ export const StreakDisplay = forwardRef<HTMLDivElement, StreakDisplayProps>(
             label={showLabel ? "Day Streak" : undefined}
           />
           {showFreeze && freezeCount > 0 && (
-            <div className="mt-2 flex items-center gap-1 text-caption text-palette-neutral-500 dark:text-palette-neutral-400">
+            <div className="mt-2 flex items-center gap-1 text-caption text-palette-neutral-500">
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
@@ -68,14 +68,14 @@ export const StreakDisplay = forwardRef<HTMLDivElement, StreakDisplayProps>(
     
     if (variant === "compact") {
       return (
-        <div ref={ref} className={`inline-flex items-center ${s.gap} ${s.padding} bg-palette-neutral-100 dark:bg-palette-neutral-800 rounded-full ${className}`} {...props}>
-          <div className={`relative flex items-center ${s.icon} text-palette-accent-500`}>
+        <div ref={ref} className={`inline-flex items-center ${s.gap} ${s.padding} bg-palette-accent-400/10 border border-palette-accent-400/30 rounded-full backdrop-blur-sm ${className}`} {...props}>
+          <div className={`relative flex items-center ${s.icon} text-palette-accent-400`}>
             <svg className="w-full h-full" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
             </svg>
             {isActiveToday && animate && (
               <motion.div
-                className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-palette-green-500 rounded-full"
+                className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-palette-green-400 rounded-full"
                 initial={{ scale: 0 }}
                 animate={{ scale: [1, 1.3, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
@@ -83,8 +83,8 @@ export const StreakDisplay = forwardRef<HTMLDivElement, StreakDisplayProps>(
             )}
           </div>
           <div className="flex flex-col">
-            <span className={`${s.text} font-bold text-palette-neutral-900 dark:text-palette-neutral-50 tabular-nums`}>{current}</span>
-            {showLabel && <span className="text-caption text-palette-neutral-600 dark:text-palette-neutral-400">Day Streak</span>}
+            <span className={`${s.text} font-bold text-palette-neutral-50 tabular-nums`}>{current}</span>
+            {showLabel && <span className="text-caption text-palette-neutral-400">Day Streak</span>}
           </div>
         </div>
       );
@@ -92,16 +92,16 @@ export const StreakDisplay = forwardRef<HTMLDivElement, StreakDisplayProps>(
     
     if (variant === "detailed") {
       return (
-        <div ref={ref} className={`bg-white dark:bg-palette-neutral-900 rounded-xl border border-palette-neutral-200 dark:border-palette-neutral-800 p-6 ${className}`} {...props}>
+        <div ref={ref} className={`glass rounded-2xl p-6 ${className}`} {...props}>
           <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-6">
             <div className="flex items-center gap-4">
-              <div className="relative p-4 bg-palette-accent-100 dark:bg-palette-accent-900/30 rounded-xl">
-                <svg className="w-8 h-8 text-palette-accent-600 dark:text-palette-accent-400" fill="currentColor" viewBox="0 0 24 24">
+              <div className="relative p-4 bg-palette-accent-400/10 border border-palette-accent-400/30 rounded-xl">
+                <svg className="w-8 h-8 text-palette-accent-400" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
                 </svg>
                 {isActiveToday && animate && (
                   <motion.div
-                    className="absolute -top-1 -right-1 w-3 h-3 bg-palette-green-500 rounded-full"
+                    className="absolute -top-1 -right-1 w-3 h-3 bg-palette-green-400 rounded-full"
                     initial={{ scale: 0 }}
                     animate={{ scale: [1, 1.4, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
@@ -109,23 +109,23 @@ export const StreakDisplay = forwardRef<HTMLDivElement, StreakDisplayProps>(
                 )}
               </div>
               <div>
-                <span className="text-display-lg font-bold text-palette-neutral-900 dark:text-palette-neutral-50 tabular-nums">{current}</span>
-                <p className="text-body-md text-palette-neutral-600 dark:text-palette-neutral-400">Day Streak</p>
+                <span className="text-display-lg font-bold text-gradient tabular-nums">{current}</span>
+                <p className="text-body-md text-palette-neutral-400">Day Streak</p>
               </div>
             </div>
-            <div className="flex flex-col xs:flex-row xs:items-center gap-4 border-t xs:border-t-0 xs:border-l xs:pl-6 dark:border-palette-neutral-800 pt-4 xs:pt-0">
+            <div className="flex flex-col xs:flex-row xs:items-center gap-4 border-t xs:border-t-0 xs:border-l xs:pl-6 border-palette-neutral-800 pt-4 xs:pt-0">
               <div className="flex items-center gap-4">
                 <div className="text-center">
-                  <span className="text-heading-lg font-bold text-palette-neutral-900 dark:text-palette-neutral-50 tabular-nums">{longest}</span>
-                  <p className="text-caption text-palette-neutral-500 dark:text-palette-neutral-400">Longest</p>
+                  <span className="text-heading-lg font-bold text-palette-neutral-50 tabular-nums">{longest}</span>
+                  <p className="text-caption text-palette-neutral-500">Longest</p>
                 </div>
-                <div className="w-px h-8 bg-palette-neutral-200 dark:bg-palette-neutral-700" />
+                <div className="w-px h-8 bg-palette-neutral-800" />
                 {showFreeze && (
                   <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-palette-neutral-500 dark:text-palette-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-palette-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
-                    <span className="text-body-sm text-palette-neutral-700 dark:text-palette-neutral-300">
+                    <span className="text-body-sm text-palette-neutral-300">
                       {freezeCount}/{maxFreezes} freezes
                     </span>
                   </div>
@@ -138,14 +138,14 @@ export const StreakDisplay = forwardRef<HTMLDivElement, StreakDisplayProps>(
     }
     
     return (
-      <div ref={ref} className={`inline-flex items-center ${s.gap} ${s.padding} bg-white dark:bg-palette-neutral-900 rounded-xl border border-palette-neutral-200 dark:border-palette-neutral-800 shadow-sm ${className}`} {...props}>
-        <div className={`relative flex items-center ${s.icon} text-palette-accent-500`}>
+      <div ref={ref} className={`inline-flex items-center ${s.gap} ${s.padding} glass rounded-xl shadow-lg shadow-palette-neutral-950/40 ${className}`} {...props}>
+        <div className={`relative flex items-center ${s.icon} text-palette-accent-400`}>
           <svg className="w-full h-full" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
           </svg>
           {isActiveToday && animate && (
             <motion.div
-              className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-palette-green-500 rounded-full"
+              className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-palette-green-400 rounded-full"
               initial={{ scale: 0 }}
               animate={{ scale: [1, 1.3, 1] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
@@ -153,11 +153,11 @@ export const StreakDisplay = forwardRef<HTMLDivElement, StreakDisplayProps>(
           )}
         </div>
         <div className="flex flex-col">
-          <span className={`${s.text} font-bold text-palette-neutral-900 dark:text-palette-neutral-50 tabular-nums`}>{current}</span>
-          {showLabel && <span className="text-caption text-palette-neutral-600 dark:text-palette-neutral-400">Day Streak</span>}
+          <span className={`${s.text} font-bold text-palette-neutral-50 tabular-nums`}>{current}</span>
+          {showLabel && <span className="text-caption text-palette-neutral-500">Day Streak</span>}
         </div>
         {showFreeze && freezeCount > 0 && (
-          <Badge variant="outline" size="sm" dot dotColor="text-palette-amber-500" className="ml-2">
+          <Badge variant="outline" size="sm" dot dotColor="text-palette-amber-400" className="ml-2">
             {freezeCount}/{maxFreezes} freezes
           </Badge>
         )}
@@ -181,7 +181,7 @@ export function StreakFlame({ count, size = "md", animated = true, className = "
   
   if (count === 0) {
     return (
-      <svg className={`${className} text-palette-neutral-300 dark:text-palette-neutral-600`} width={flameSize} height={flameSize} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
+      <svg className={`${className} text-palette-neutral-600`} width={flameSize} height={flameSize} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     );
@@ -200,7 +200,7 @@ export function StreakFlame({ count, size = "md", animated = true, className = "
           fill="none"
           stroke="currentColor"
           strokeWidth={1.5}
-          className="text-palette-accent-500"
+          className="text-palette-accent-400"
           initial={{ opacity: 0, y: 10, rotate: -20 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
           transition={{ delay: i * 0.1, duration: 0.4 }}
@@ -218,7 +218,7 @@ export function StreakFlame({ count, size = "md", animated = true, className = "
         </motion.svg>
       ))}
       {count > 5 && (
-        <span className="text-body-sm font-medium text-palette-accent-600 dark:text-palette-accent-400 ml-1">+{count - 5}</span>
+        <span className="text-body-sm font-medium text-palette-accent-400 ml-1">+{count - 5}</span>
       )}
     </div>
   );

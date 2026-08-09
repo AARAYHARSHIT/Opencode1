@@ -15,10 +15,12 @@ export function Scene3D() {
         gl={{ antialias: true, alpha: true }}
         className="w-full h-full"
       >
-        <ambientLight intensity={0.8} />
-        <directionalLight position={[5, 5, 5]} intensity={1} />
+        <ambientLight intensity={0.9} />
+        <directionalLight position={[5, 5, 5]} intensity={1.2} />
+        <pointLight position={[-5, -5, -5]} intensity={1.5} color="#fb923c" />
+        <pointLight position={[5, -4, 3]} intensity={1.2} color="#facc15" />
         <Mesh />
-        <OrbitControls enablePan={false} enableZoom={false} autoRotate={true} autoRotateSpeed={0.5} />
+        <OrbitControls enablePan={false} enableZoom={false} autoRotate={true} autoRotateSpeed={0.6} />
         <Html
           wrapperClass="absolute inset-0 pointer-events-none"
           prepend
@@ -32,7 +34,7 @@ export function Scene3D() {
             transition={{ delay: 0.5, duration: 0.6 }}
             className="text-center px-4"
           >
-            <p className="text-caption text-palette-neutral-500 dark:text-palette-neutral-400">
+            <p className="text-caption text-palette-neutral-400">
               Optional 3D Accent
             </p>
           </motion.div>
@@ -58,10 +60,10 @@ function Mesh() {
       <mesh ref={meshRef} position={[0, 0, 0]}>
         <torusKnotGeometry args={[1, 0.3, 100, 16]} />
         <meshPhysicalMaterial
-          color="#0ea5e9"
-          metalness={0.1}
-          roughness={0.3}
-          transmission={0.3}
+          color="#fb923c"
+          metalness={0.2}
+          roughness={0.2}
+          transmission={0.4}
           thickness={0.5}
           clearcoat={1}
           clearcoatRoughness={0.1}
@@ -70,10 +72,10 @@ function Mesh() {
       <mesh position={[0, 0, 0]}>
         <torusKnotGeometry args={[1.3, 0.15, 64, 8]} />
         <meshBasicMaterial
-          color="#d946ef"
+          color="#facc15"
           wireframe
           transparent
-          opacity={0.3}
+          opacity={0.35}
         />
       </mesh>
     </group>

@@ -24,14 +24,14 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
     };
     
     const variantStyles = {
-      default: "bg-palette-primary-600 dark:bg-palette-primary-500",
-      primary: "bg-palette-primary-600 dark:bg-palette-primary-500",
-      success: "bg-palette-green-600 dark:bg-palette-green-500",
-      warning: "bg-palette-amber-600 dark:bg-palette-amber-500",
-      destructive: "bg-palette-red-600 dark:bg-palette-red-500",
+      default: "bg-gradient-to-r from-palette-primary-500 to-palette-secondary-400 shadow-sm shadow-palette-primary-500/40",
+      primary: "bg-gradient-to-r from-palette-primary-500 to-palette-secondary-400 shadow-sm shadow-palette-primary-500/40",
+      success: "bg-gradient-to-r from-palette-green-500 to-palette-green-400 shadow-sm shadow-palette-green-500/40",
+      warning: "bg-gradient-to-r from-palette-amber-500 to-palette-amber-400 shadow-sm shadow-palette-amber-500/40",
+      destructive: "bg-gradient-to-r from-palette-red-500 to-palette-red-400 shadow-sm shadow-palette-red-500/40",
     };
     
-    const baseStyles = "w-full bg-palette-neutral-200 dark:bg-palette-neutral-700 rounded-full overflow-hidden";
+    const baseStyles = "w-full bg-palette-neutral-800/80 rounded-full overflow-hidden";
     const barStyles = "h-full rounded-full transition-all duration-500 ease-out";
     const animatedStyles = animated ? "animate-pulse" : "";
     const stripedStyles = striped ? "bg-stripes" : "";
@@ -48,7 +48,7 @@ export const Progress = forwardRef<HTMLDivElement, ProgressProps>(
           aria-label={label || `Progress: ${Math.round(percentage)}%`}
         />
         {showLabel && (
-          <div className="mt-1.5 flex items-center justify-between text-body-sm text-palette-neutral-600 dark:text-palette-neutral-400">
+          <div className="mt-1.5 flex items-center justify-between text-body-sm text-palette-neutral-400">
             <span>{label || "Progress"}</span>
             <span className="font-mono font-medium">{Math.round(percentage)}%</span>
           </div>
@@ -78,14 +78,14 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
     const offset = circumference - (percentage / 100) * circumference;
     
     const variantStyles = {
-      default: "text-palette-primary-600 dark:text-palette-primary-500",
-      primary: "text-palette-primary-600 dark:text-palette-primary-500",
-      success: "text-palette-green-600 dark:text-palette-green-500",
-      warning: "text-palette-amber-600 dark:text-palette-amber-500",
-      destructive: "text-palette-red-600 dark:text-palette-red-500",
+      default: "text-palette-primary-500",
+      primary: "text-palette-primary-500",
+      success: "text-palette-green-500",
+      warning: "text-palette-amber-500",
+      destructive: "text-palette-red-500",
     };
     
-    const trackColor = "text-palette-neutral-200 dark:text-palette-neutral-700";
+    const trackColor = "text-palette-neutral-800";
     
     return (
       <div
@@ -106,8 +106,8 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
           />
           <circle
             className={`${variantStyles[variant]} transition-all duration-500 ease-out`}
-            strokeWidth={strokeWidth}
             stroke="currentColor"
+            strokeWidth={strokeWidth}
             fill="none"
             r={radius}
             cx={size / 2}
@@ -115,14 +115,14 @@ export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps
             strokeDasharray={circumference}
             strokeDashoffset={offset}
             strokeLinecap="round"
-            style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))" }}
+            style={{ filter: "drop-shadow(0 0 6px rgba(249,115,22,0.5))" }}
           />
         </svg>
         {showLabel && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
               <span className="font-mono text-heading-md font-bold">{Math.round(percentage)}%</span>
-              {label && <p className="text-caption text-palette-neutral-500 dark:text-palette-neutral-400 mt-0.5">{label}</p>}
+              {label && <p className="text-caption text-palette-neutral-500 mt-0.5">{label}</p>}
             </div>
           </div>
         )}
@@ -158,16 +158,16 @@ export function StepProgress({ currentStep, steps, variant = "default", directio
                 {!isLast && (
                   <div
                     className={`absolute ${isVertical ? "left-1/2 top-full h-full w-0.5 -translate-x-1/2" : "bottom-1/2 left-full w-full h-0.5 -translate-y-1/2"} transition-colors`}
-                    style={{ backgroundColor: isCompleted ? "#22c55e" : "#e5e5e5" }}
+                    style={{ backgroundColor: isCompleted ? "#10b981" : "#1e293b" }}
                   />
                 )}
                 <div
                   className={`flex items-center justify-center rounded-full border-2 transition-all duration-300 ${
                     isCompleted
-                      ? "bg-palette-green-600 border-palette-green-600 text-white"
+                      ? "bg-palette-green-600 border-palette-green-500 text-white shadow-md shadow-palette-green-500/30"
                       : isCurrent
-                      ? "bg-palette-primary-600 border-palette-primary-600 text-white"
-                      : "bg-white dark:bg-palette-neutral-900 border-palette-neutral-300 dark:border-palette-neutral-600 text-palette-neutral-500 dark:text-palette-neutral-400"
+                      ? "bg-palette-primary-600 border-palette-primary-400 text-white shadow-glow"
+                      : "bg-palette-neutral-900 border-palette-neutral-700 text-palette-neutral-500"
                   }`}
                   style={{ width: variant === "compact" ? 24 : 32, height: variant === "compact" ? 24 : 32 }}
                 >
@@ -181,11 +181,11 @@ export function StepProgress({ currentStep, steps, variant = "default", directio
                 </div>
               </div>
               <div className={`${isVertical ? "ml-4 mt-2" : "ml-3"}`}>
-                <p className={`font-medium text-body-sm ${isCurrent ? "text-palette-primary-600 dark:text-palette-primary-400" : isCompleted ? "text-palette-neutral-900 dark:text-palette-neutral-50" : "text-palette-neutral-500 dark:text-palette-neutral-400"}`}>
+                <p className={`font-medium text-body-sm ${isCurrent ? "text-palette-primary-400" : isCompleted ? "text-palette-neutral-50" : "text-palette-neutral-500"}`}>
                   {step.label}
                 </p>
                 {step.description && (
-                  <p className={`text-caption ${isCurrent ? "text-palette-primary-500 dark:text-palette-primary-400" : "text-palette-neutral-400 dark:text-palette-neutral-500"}`}>
+                  <p className={`text-caption ${isCurrent ? "text-palette-secondary-400" : "text-palette-neutral-600"}`}>
                     {step.description}
                   </p>
                 )}

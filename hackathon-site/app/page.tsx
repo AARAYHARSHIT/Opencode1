@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeader } from "@/components/ui/section-header";
+import { StreakFlame } from "@/components/ui/streak-display";
 
 function DeviceCapabilityCheck() {
   const [canRun3D, setCanRun3D] = useState(false);
@@ -59,41 +60,48 @@ const socialProof = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-palette-neutral-50 dark:bg-palette-neutral-950">
-      <header className="border-b border-palette-neutral-200 dark:border-palette-neutral-800">
+    <div className="min-h-screen">
+      <header className="glass-strong border-b border-white/10 sticky top-0 z-40">
         <nav className="container mx-auto px-4 xs:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2" aria-label="ABTalks Home">
-            <svg className="w-8 h-8 text-palette-primary-600 dark:text-palette-primary-400" fill="currentColor" viewBox="0 0 24 24">
+          <Link href="/" className="flex items-center gap-2 group" aria-label="ABTalks Home">
+            <svg className="w-8 h-8 text-palette-primary-400 transition-transform group-hover:scale-110 duration-200 drop-shadow-[0_0_12px_rgba(249,115,22,0.5)]" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
             </svg>
-            <span className="text-heading-lg font-bold text-palette-neutral-900 dark:text-palette-neutral-50">ABTalks</span>
+            <span className="text-heading-lg font-bold text-palette-neutral-50">AB<GradientText>Talks</GradientText></span>
           </Link>
-          <div className="flex items-center gap-4">
-            <Link href="/dashboard" className="hidden sm:inline-flex text-body-sm font-medium text-palette-primary-600 dark:text-palette-primary-400 hover:underline">
+          <div className="flex items-center gap-3">
+            <Link href="/dashboard" className="hidden sm:inline-flex text-body-sm font-medium text-palette-neutral-300 hover:text-palette-primary-400 transition-colors px-3 py-2 rounded-lg hover:bg-white/5">
               Dashboard
             </Link>
-            <Link href="/day/1" className="inline-flex items-center justify-center px-4 py-2 text-body-sm font-medium text-white bg-palette-primary-600 rounded-lg hover:bg-palette-primary-700 transition-colors">
-              Start Challenge
+            <Link href="/day/1">
+              <Button size="md" className="px-5">
+                Start Challenge
+              </Button>
             </Link>
           </div>
         </nav>
       </header>
 
       <main className="relative">
+        {/* Hero — gradient + grid + glow */}
         <section className="relative min-h-[70vh] xs:min-h-[80vh] flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-palette-primary-50 via-white to-palette-neutral-50 dark:from-palette-primary-950/20 dark:via-palette-neutral-950 dark:to-palette-neutral-950" />
+          <div className="absolute inset-0 bg-grid" />
+          <div className="absolute inset-0 bg-gradient-to-b from-palette-primary-500/15 via-transparent to-transparent" />
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[120%] h-[500px] rounded-full bg-gradient-to-r from-palette-primary-600/30 via-palette-secondary-500/20 to-palette-accent-400/20 blur-3xl" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-palette-primary-400/60 to-transparent" />
           <DeviceCapabilityCheck />
           
           <div className="relative container mx-auto px-4 xs:px-6 lg:px-8 py-16 xs:py-24 lg:py-32 z-10">
             <ScrollReveal direction="up">
               <div className="text-center max-w-4xl mx-auto">
-                <Badge variant="primary" size="lg" className="mb-6 inline-flex">
+                <Badge variant="primary" size="lg" className="mb-6 inline-flex shadow-glow-sm">
                   <span className="mr-1">🚀</span> 60-Day Coding Challenge
                 </Badge>
-                <h1 className="text-display-xl xs:text-display-lg lg:text-display-xl font-semibold text-palette-neutral-900 dark:text-palette-neutral-50 tracking-tight leading-tight">
-                  Build the habit of <span className="text-palette-primary-600 dark:text-palette-primary-400">daily proof of work</span>
+                <h1 className="text-display-xl xs:text-display-lg lg:text-display-xl font-semibold text-palette-neutral-50 tracking-tight leading-tight text-balance">
+                  Build the habit of{" "}
+                  <GradientText>daily proof of work</GradientText>
                 </h1>
-                <p className="mt-6 xs:mt-8 text-body-lg xs:text-body-xl text-palette-neutral-600 dark:text-palette-neutral-400 max-w-2xl mx-auto leading-relaxed">
+                <p className="mt-6 xs:mt-8 text-body-lg xs:text-body-xl text-palette-neutral-400 max-w-2xl mx-auto leading-relaxed">
                   60 days. One coding task daily. Two proofs: a GitHub commit + a LinkedIn post. 
                   Transform from sporadic coder to consistent builder. Join 1,000+ developers shipping in public.
                 </p>
@@ -113,46 +121,52 @@ export default function Home() {
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.2} className="mt-16 xs:mt-20">
-              <div className="flex flex-col xs:flex-row items-center justify-center gap-8 text-center xs:text-left">
-                <div className="flex flex-col xs:flex-row items-center xs:items-center gap-6 xs:gap-8">
-                  <div>
-                    <p className="text-display-md font-bold text-palette-primary-600 dark:text-palette-primary-400 tabular-nums">1,247</p>
-                    <p className="text-body-sm text-palette-neutral-500 dark:text-palette-neutral-400">Active Builders</p>
+              <div className="flex flex-col xs:flex-row items-center justify-center gap-4 xs:gap-6">
+                <HoverLift className="glass rounded-2xl px-6 xs:px-8 py-5 shadow-lg shadow-palette-neutral-950/40">
+                  <div className="text-center">
+                    <p className="text-display-md font-bold text-gradient tabular-nums">1,247</p>
+                    <p className="text-body-sm text-palette-neutral-400 mt-1">Active Builders</p>
                   </div>
-                  <div className="border-l border-palette-neutral-200 dark:border-palette-neutral-700 pl-6 xs:pl-8">
-                    <p className="text-display-md font-bold text-palette-accent-600 dark:text-palette-accent-400 tabular-nums">89%</p>
-                    <p className="text-body-sm text-palette-neutral-500 dark:text-palette-neutral-400">Completion Rate</p>
+                </HoverLift>
+                <HoverLift className="glass rounded-2xl px-6 xs:px-8 py-5 shadow-lg shadow-palette-neutral-950/40">
+                  <div className="text-center">
+                    <p className="text-display-md font-bold text-gradient tabular-nums">89%</p>
+                    <p className="text-body-sm text-palette-neutral-400 mt-1">Completion Rate</p>
                   </div>
-                  <div className="border-l border-palette-neutral-200 dark:border-palette-neutral-700 pl-6 xs:pl-8">
-                    <p className="text-display-md font-bold text-palette-green-600 dark:text-palette-green-400 tabular-nums">4.8</p>
-                    <p className="text-body-sm text-palette-neutral-500 dark:text-palette-neutral-400">Avg Rating</p>
+                </HoverLift>
+                <HoverLift className="glass rounded-2xl px-6 xs:px-8 py-5 shadow-lg shadow-palette-neutral-950/40">
+                  <div className="text-center">
+                    <p className="text-display-md font-bold text-gradient tabular-nums">4.8</p>
+                    <p className="text-body-sm text-palette-neutral-400 mt-1">Avg Rating</p>
                   </div>
-                </div>
+                </HoverLift>
               </div>
             </ScrollReveal>
           </div>
         </section>
 
-        <section id="how-it-works" className="py-16 xs:py-24 lg:py-32 bg-white dark:bg-palette-neutral-950">
+        <section id="how-it-works" className="py-16 xs:py-24 lg:py-32">
           <div className="container mx-auto px-4 xs:px-6 lg:px-8">
             <SectionHeader
               title="How It Works"
               description="Four simple steps to build a daily coding habit that sticks"
               variant="default"
+              align="center"
               delay={0}
+              badge={<Badge variant="secondary">The Method</Badge>}
             />
 
-            <StaggerContainer staggerDelay={0.1} className="mt-12">
+            <StaggerContainer staggerDelay={0.1} className="mt-12 grid gap-6 sm:grid-cols-2">
               {howItWorks.map((item) => (
                 <StaggerItem key={item.step}>
-                  <HoverLift className="bg-palette-neutral-50 dark:bg-palette-neutral-900 rounded-2xl p-6 xs:p-8 border border-palette-neutral-200 dark:border-palette-neutral-800">
+                  <HoverLift className="glass rounded-2xl p-6 xs:p-8 shadow-lg shadow-palette-neutral-950/40 hover:border-palette-primary-400/50">
                     <div className="flex flex-col xs:flex-row xs:items-start gap-4 xs:gap-6">
-                      <div className="flex-shrink-0 w-14 h-14 xs:w-16 xs:h-16 rounded-xl bg-palette-primary-100 dark:bg-palette-primary-900/30 flex items-center justify-center">
-                        <span className="text-display-sm font-bold text-palette-primary-600 dark:text-palette-primary-400 font-mono">{item.step}</span>
+                      <div className="flex-shrink-0 w-14 h-14 xs:w-16 xs:h-16 rounded-2xl bg-gradient-to-br from-palette-primary-500 to-palette-secondary-400 shadow-glow-sm flex items-center justify-center">
+                        <span className="text-display-sm font-bold text-white font-mono">{item.step}</span>
                       </div>
                       <div className="flex-1 text-left">
-                        <h3 className="text-heading-lg font-semibold text-palette-neutral-900 dark:text-palette-neutral-50">{item.title}</h3>
-                        <p className="mt-2 text-body-md text-palette-neutral-600 dark:text-palette-neutral-400">{item.description}</p>
+                        <h3 className="text-heading-lg font-semibold text-palette-neutral-50">{item.title}</h3>
+                        <p className="mt-2 text-body-md text-palette-neutral-400">{item.description}</p>
                       </div>
                     </div>
                   </HoverLift>
@@ -162,31 +176,40 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 xs:py-24 lg:py-32 bg-palette-neutral-50 dark:bg-palette-neutral-950">
+        <section className="py-16 xs:py-24 lg:py-32">
           <div className="container mx-auto px-4 xs:px-6 lg:px-8">
             <SectionHeader
               title="What Builders Say"
               description="Real developers. Real results. No marketing fluff."
               variant="default"
+              align="center"
               delay={0}
+              badge={<Badge variant="primary">Winners</Badge>}
             />
 
             <StaggerContainer staggerDelay={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {socialProof.map((item) => (
                 <StaggerItem key={item.name}>
-                  <Card variant="elevated" padding="lg" className="h-full">
+                  <Card variant="elevated" padding="lg" hover className="h-full">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 rounded-full bg-palette-primary-100 dark:bg-palette-primary-900/30 flex items-center justify-center">
-                        <span className="text-heading-md font-bold text-palette-primary-600 dark:text-palette-primary-400">
+                      <div className="w-11 h-11 rounded-full bg-gradient-to-br from-palette-primary-500 to-palette-accent-400 flex items-center justify-center ring-2 ring-palette-primary-400/30">
+                        <span className="text-heading-md font-bold text-white">
                           {item.name.split(" ").map(n => n[0]).join("")}
                         </span>
                       </div>
                       <div>
-                        <p className="text-body-sm font-medium text-palette-neutral-900 dark:text-palette-neutral-50">{item.name}</p>
-                        <p className="text-caption text-palette-neutral-500 dark:text-palette-neutral-400">{item.role} @ {item.company}</p>
+                        <p className="text-body-sm font-medium text-palette-neutral-50">{item.name}</p>
+                        <p className="text-caption text-palette-neutral-500">{item.role} @ {item.company}</p>
+                      </div>
+                      <div className="ml-auto flex gap-0.5 text-palette-accent-400">
+                        {[...Array(5)].map((_, i) => (
+                          <svg key={i} className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l2.6 6.3 6.9.5-5.3 4.5 1.6 6.7L12 16.9l-5.8 3.1 1.6-6.7L2.5 8.8l6.9-.5L12 2z" />
+                          </svg>
+                        ))}
                       </div>
                     </div>
-                    <p className="text-body-md text-palette-neutral-700 dark:text-palette-neutral-300 italic">&ldquo;{item.quote}&rdquo;</p>
+                    <p className="text-body-md text-palette-neutral-300 italic">“{item.quote}”</p>
                   </Card>
                 </StaggerItem>
               ))}
@@ -194,65 +217,70 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 xs:py-24 lg:py-32 bg-palette-primary-600 dark:bg-palette-primary-700">
-          <div className="container mx-auto px-4 xs:px-6 lg:px-8 text-center">
+        <section className="py-16 xs:py-24 lg:py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-palette-primary-950/60 via-palette-secondary-900/40 to-palette-neutral-950/60" />
+          <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[80%] h-[400px] rounded-full bg-gradient-to-r from-palette-primary-500/30 via-palette-secondary-400/25 to-palette-accent-400/30 blur-[100px]" />
+          <div className="relative container mx-auto px-4 xs:px-6 lg:px-8 text-center">
             <ScrollReveal direction="up">
-              <h2 className="text-display-md xs:text-display-lg font-semibold text-white tracking-tight">
-                Ready to build your daily coding habit?
-              </h2>
-              <p className="mt-4 xs:mt-6 text-body-lg xs:text-body-xl text-palette-primary-100 max-w-2xl mx-auto">
-                Day 1 takes 30 minutes. No setup required. Just you, a task, and the commitment to show up tomorrow too.
-              </p>
-              <div className="mt-8 xs:mt-10 flex flex-col xs:flex-row items-center justify-center gap-4">
-                <Link href="/day/1">
-                  <Button size="xl" variant="secondary" className="w-full xs:w-auto bg-white text-palette-primary-600 hover:bg-palette-primary-50">
-                    Start Your 60-Day Challenge →
-                  </Button>
-                </Link>
-                <Link href="/dashboard">
-                  <Button size="xl" variant="outline" className="w-full xs:w-auto border-white text-white hover:bg-white/10">
-                    See Demo Dashboard
-                  </Button>
-                </Link>
+              <div className="glass rounded-3xl p-8 xs:p-12 lg:p-16 shadow-2xl shadow-palette-neutral-950/60 max-w-4xl mx-auto">
+                <StreakFlame count={12} size="lg" />
+                <h2 className="mt-4 text-display-md xs:text-display-lg font-semibold text-palette-neutral-50 tracking-tight">
+                  Ready to build your <span className="text-gradient">daily coding habit</span>?
+                </h2>
+                <p className="mt-4 xs:mt-6 text-body-lg xs:text-body-xl text-palette-neutral-400 max-w-2xl mx-auto">
+                  Day 1 takes 30 minutes. No setup required. Just you, a task, and the commitment to show up tomorrow too.
+                </p>
+                <div className="mt-8 xs:mt-10 flex flex-col xs:flex-row items-center justify-center gap-4">
+                  <Link href="/day/1">
+                    <Button size="xl" className="w-full xs:w-auto">
+                      Start Your 60-Day Challenge →
+                    </Button>
+                  </Link>
+                  <Link href="/dashboard">
+                    <Button size="xl" variant="outline" className="w-full xs:w-auto">
+                      See Demo Dashboard
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </ScrollReveal>
           </div>
         </section>
 
-        <footer className="border-t border-palette-neutral-200 dark:border-palette-neutral-800 py-12 bg-white dark:bg-palette-neutral-950">
+        <footer className="border-t border-palette-neutral-800 py-12 bg-palette-neutral-950/50 backdrop-blur-sm">
           <div className="container mx-auto px-4 xs:px-6 lg:px-8">
             <div className="grid gap-8 md:grid-cols-4">
               <div className="md:col-span-2">
                 <Link href="/" className="flex items-center gap-2 mb-4">
-                  <svg className="w-8 h-8 text-palette-primary-600 dark:text-palette-primary-400" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8 text-palette-primary-400" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                   </svg>
-                  <span className="text-heading-lg font-bold text-palette-neutral-900 dark:text-palette-neutral-50">ABTalks</span>
+                  <span className="text-heading-lg font-bold text-palette-neutral-50">AB<GradientText>Talks</GradientText></span>
                 </Link>
-                <p className="text-body-md text-palette-neutral-600 dark:text-palette-neutral-400 max-w-xs">
+                <p className="text-body-md text-palette-neutral-400 max-w-xs">
                   60 days of daily proof of work. GitHub commits + LinkedIn posts. Build in public. Grow in private.
                 </p>
               </div>
               <div>
-                <h4 className="text-body-sm font-semibold text-palette-neutral-900 dark:text-palette-neutral-50 uppercase tracking-wider mb-4">Quick Links</h4>
+                <h4 className="text-body-sm font-semibold text-palette-neutral-200 uppercase tracking-wider mb-4">Quick Links</h4>
                 <nav className="space-y-2">
-                  <Link href="/day/1" className="block text-body-sm text-palette-neutral-600 dark:text-palette-neutral-400 hover:text-palette-primary-600 dark:hover:text-palette-primary-400 transition-colors">Start Challenge</Link>
-                  <Link href="/dashboard" className="block text-body-sm text-palette-neutral-600 dark:text-palette-neutral-400 hover:text-palette-primary-600 dark:hover:text-palette-primary-400 transition-colors">Dashboard Demo</Link>
-                  <Link href="#how-it-works" className="block text-body-sm text-palette-neutral-600 dark:text-palette-neutral-400 hover:text-palette-primary-600 dark:hover:text-palette-primary-400 transition-colors">How It Works</Link>
+                  <Link href="/day/1" className="block text-body-sm text-palette-neutral-400 hover:text-palette-primary-400 transition-colors">Start Challenge</Link>
+                  <Link href="/dashboard" className="block text-body-sm text-palette-neutral-400 hover:text-palette-primary-400 transition-colors">Dashboard Demo</Link>
+                  <Link href="#how-it-works" className="block text-body-sm text-palette-neutral-400 hover:text-palette-primary-400 transition-colors">How It Works</Link>
                 </nav>
               </div>
               <div>
-                <h4 className="text-body-sm font-semibold text-palette-neutral-900 dark:text-palette-neutral-50 uppercase tracking-wider mb-4">Resources</h4>
+                <h4 className="text-body-sm font-semibold text-palette-neutral-200 uppercase tracking-wider mb-4">Resources</h4>
                 <nav className="space-y-2">
-                  <Link href="#" className="block text-body-sm text-palette-neutral-600 dark:text-palette-neutral-400 hover:text-palette-primary-600 dark:hover:text-palette-primary-400 transition-colors">GitHub Template</Link>
-                  <Link href="#" className="block text-body-sm text-palette-neutral-600 dark:text-palette-neutral-400 hover:text-palette-primary-600 dark:hover:text-palette-primary-400 transition-colors">LinkedIn Guide</Link>
-                  <Link href="#" className="block text-body-sm text-palette-neutral-600 dark:text-palette-neutral-400 hover:text-palette-primary-600 dark:hover:text-palette-primary-400 transition-colors">Streak Rules</Link>
+                  <Link href="#" className="block text-body-sm text-palette-neutral-400 hover:text-palette-primary-400 transition-colors">GitHub Template</Link>
+                  <Link href="#" className="block text-body-sm text-palette-neutral-400 hover:text-palette-primary-400 transition-colors">LinkedIn Guide</Link>
+                  <Link href="#" className="block text-body-sm text-palette-neutral-400 hover:text-palette-primary-400 transition-colors">Streak Rules</Link>
                 </nav>
               </div>
             </div>
-            <div className="mt-12 pt-8 border-t border-palette-neutral-200 dark:border-palette-neutral-800 text-center">
-              <p className="text-body-sm text-palette-neutral-500 dark:text-palette-neutral-400">
-                Built for hackathon submission &middot; Next.js 15 &middot; Tailwind CSS v4 &middot; Motion &middot; Three.js
+            <div className="mt-12 pt-8 border-t border-palette-neutral-800 text-center">
+              <p className="text-body-sm text-palette-neutral-500">
+                Built for hackathon submission &middot; Next.js &middot; Tailwind CSS v4 &middot; Motion &middot; Three.js
               </p>
             </div>
           </div>
@@ -260,4 +288,8 @@ export default function Home() {
       </main>
     </div>
   );
+}
+
+function GradientText({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return <span className={`text-gradient ${className}`}>{children}</span>;
 }

@@ -21,32 +21,32 @@ type IllustrationKey = "none" | "search" | "folder" | "user" | "calendar" | "tro
 const illustrations: Record<IllustrationKey, React.ReactNode> = {
   none: null,
   search: (
-    <svg className="w-16 h-16 text-palette-neutral-300 dark:text-palette-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-16 h-16 text-palette-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
     </svg>
   ),
   folder: (
-    <svg className="w-16 h-16 text-palette-neutral-300 dark:text-palette-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-16 h-16 text-palette-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
     </svg>
   ),
   user: (
-    <svg className="w-16 h-16 text-palette-neutral-300 dark:text-palette-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-16 h-16 text-palette-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
     </svg>
   ),
   calendar: (
-    <svg className="w-16 h-16 text-palette-neutral-300 dark:text-palette-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-16 h-16 text-palette-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
     </svg>
   ),
   trophy: (
-    <svg className="w-16 h-16 text-palette-neutral-300 dark:text-palette-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-16 h-16 text-palette-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
     </svg>
   ),
   code: (
-    <svg className="w-16 h-16 text-palette-neutral-300 dark:text-palette-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-16 h-16 text-palette-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
     </svg>
   ),
@@ -74,7 +74,7 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
     
     const variantStyles = {
       default: "text-center",
-      card: "text-center bg-white dark:bg-palette-neutral-900 rounded-xl border border-palette-neutral-200 dark:border-palette-neutral-800 shadow-sm",
+      card: "text-center glass rounded-2xl shadow-lg shadow-palette-neutral-950/40",
       inline: "text-center py-8",
       fullscreen: "text-center min-h-[60vh] flex flex-col items-center justify-center px-4",
     };
@@ -86,14 +86,14 @@ export const EmptyState = forwardRef<HTMLDivElement, EmptyStateProps>(
     const content = (
       <div className={`flex flex-col items-center ${s.gap} ${s.padding} w-full`}>
         {(icon || showIllustration) && (
-          <div className={`flex items-center justify-center ${s.icon} text-palette-neutral-400 dark:text-palette-neutral-500`}>
+          <div className={`flex items-center justify-center ${s.icon} text-palette-neutral-600`}>
             {icon || illustrationNode}
           </div>
         )}
         <div className="flex flex-col items-center gap-2">
-          <h2 className={`${s.title} font-semibold text-palette-neutral-900 dark:text-palette-neutral-50`}>{title}</h2>
+          <h2 className={`${s.title} font-semibold text-palette-neutral-50`}>{title}</h2>
           {description && (
-            <p className={`${s.desc} text-palette-neutral-600 dark:text-palette-neutral-400 max-w-xs text-center`}>{description}</p>
+            <p className={`${s.desc} text-palette-neutral-400 max-w-xs text-center`}>{description}</p>
           )}
         </div>
         {(action || secondaryAction) && (

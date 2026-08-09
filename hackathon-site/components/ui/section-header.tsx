@@ -38,8 +38,8 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(
     const variantStyles = {
       default: "mb-6 xs:mb-8 lg:mb-10",
       minimal: "mb-4",
-      card: "mb-6 p-6 xs:p-8 bg-white dark:bg-palette-neutral-900 rounded-xl border border-palette-neutral-200 dark:border-palette-neutral-800 shadow-sm",
-      divided: "mb-6 xs:mb-8 lg:mb-10 pb-4 xs:pb-6 border-b border-palette-neutral-200 dark:border-palette-neutral-800",
+      card: "mb-6 p-6 xs:p-8 glass rounded-2xl shadow-lg shadow-palette-neutral-950/40",
+      divided: "mb-6 xs:mb-8 lg:mb-10 pb-4 xs:pb-6 border-b border-palette-neutral-800",
     };
     
     const content = (
@@ -49,11 +49,11 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(
             {badge && (
               <div className="mb-2 inline-flex">{badge}</div>
             )}
-            <h2 className="text-heading-xl font-semibold text-palette-neutral-900 dark:text-palette-neutral-50 tracking-tight">
+            <h2 className="text-heading-xl font-semibold text-palette-neutral-50 tracking-tight">
               {title}
             </h2>
             {subtitle && (
-              <p className="mt-1 text-body-sm text-palette-neutral-500 dark:text-palette-neutral-400 font-mono">{subtitle}</p>
+              <p className="mt-1 text-body-sm text-palette-neutral-500 font-mono">{subtitle}</p>
             )}
           </div>
           {action && (
@@ -61,7 +61,7 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(
           )}
         </div>
         {description && (
-          <p className="text-body-lg text-palette-neutral-600 dark:text-palette-neutral-400 max-w-2xl">{description}</p>
+          <p className="text-body-lg text-palette-neutral-400 max-w-2xl">{description}</p>
         )}
         {children}
       </div>
@@ -95,19 +95,19 @@ export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
           <div className="flex flex-col xs:flex-row xs:items-start xs:justify-between gap-4 w-full">
             <div className="flex flex-col gap-3 w-full">
               {backLink && (
-                <div className="flex items-center gap-2 text-body-sm text-palette-neutral-500 dark:text-palette-neutral-400 hover:text-palette-primary-600 dark:hover:text-palette-primary-400 transition-colors">
+                <div className="flex items-center gap-2 text-body-sm text-palette-neutral-500 hover:text-palette-primary-400 transition-colors">
                   {backLink}
                 </div>
               )}
               <div className="flex flex-col xs:flex-row xs:items-baseline xs:justify-between gap-3 w-full">
                 <div>
                   {badge && <div className="mb-2 inline-flex">{badge}</div>}
-                  <h1 className="text-display-md font-semibold text-palette-neutral-900 dark:text-palette-neutral-50 tracking-tight">{title}</h1>
-                  {subtitle && <p className="mt-1 text-body-sm text-palette-neutral-500 dark:text-palette-neutral-400 font-mono">{subtitle}</p>}
+                  <h1 className="text-display-md font-semibold text-palette-neutral-50 tracking-tight">{title}</h1>
+                  {subtitle && <p className="mt-1 text-body-sm text-palette-neutral-500 font-mono">{subtitle}</p>}
                 </div>
                 {action && <div className="flex-shrink-0 mt-2 xs:mt-0">{action}</div>}
               </div>
-              {description && <p className="text-body-lg text-palette-neutral-600 dark:text-palette-neutral-400 max-w-2xl">{description}</p>}
+              {description && <p className="text-body-lg text-palette-neutral-400 max-w-2xl">{description}</p>}
               {children}
             </div>
           </div>
@@ -128,10 +128,10 @@ export function DayHeader({ day, totalDays, title, description, status, variant 
   variant?: "default" | "compact";
 }) {
   const statusColors = {
-    completed: "bg-palette-green-100 text-palette-green-700 dark:bg-palette-green-900/30 dark:text-palette-green-300",
-    missed: "bg-palette-red-100 text-palette-red-700 dark:bg-palette-red-900/30 dark:text-palette-red-300",
-    today: "bg-palette-primary-100 text-palette-primary-700 dark:bg-palette-primary-900/30 dark:text-palette-primary-300",
-    upcoming: "bg-palette-neutral-100 text-palette-neutral-700 dark:bg-palette-neutral-800 dark:text-palette-neutral-300",
+    completed: "bg-palette-green-500/15 text-palette-green-300 border-palette-green-500/40",
+    missed: "bg-palette-red-500/15 text-palette-red-300 border-palette-red-500/40",
+    today: "bg-palette-primary-500/15 text-palette-primary-300 border-palette-primary-500/40",
+    upcoming: "bg-palette-neutral-800 text-palette-neutral-300 border-palette-neutral-700",
   };
   
   const statusLabels = {
@@ -143,14 +143,14 @@ export function DayHeader({ day, totalDays, title, description, status, variant 
   
   if (variant === "compact") {
     return (
-      <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-3 mb-6 pb-4 border-b border-palette-neutral-200 dark:border-palette-neutral-800">
+      <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-3 mb-6 pb-4 border-b border-palette-neutral-800">
         <div className="flex items-center gap-3">
-          <span className="text-caption font-mono text-palette-neutral-500 dark:text-palette-neutral-400">Day {day} of {totalDays}</span>
+          <span className="text-caption font-mono text-palette-neutral-500">Day {day} of {totalDays}</span>
           <Badge variant="outline" className={statusColors[status]}>
             {statusLabels[status]}
           </Badge>
         </div>
-        <h1 className="text-heading-xl font-semibold text-palette-neutral-900 dark:text-palette-neutral-50">{title}</h1>
+        <h1 className="text-heading-xl font-semibold text-palette-neutral-50">{title}</h1>
       </div>
     );
   }
@@ -159,14 +159,14 @@ export function DayHeader({ day, totalDays, title, description, status, variant 
     <div className="mb-8 xs:mb-12">
       <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-3 mb-4">
         <div className="flex items-center gap-3">
-          <span className="text-caption font-mono text-palette-neutral-500 dark:text-palette-neutral-400">Day {day} of {totalDays}</span>
+          <span className="text-caption font-mono text-palette-neutral-500">Day {day} of {totalDays}</span>
           <Badge variant="outline" className={statusColors[status]}>
             {statusLabels[status]}
           </Badge>
         </div>
       </div>
-      <h1 className="text-display-md font-semibold text-palette-neutral-900 dark:text-palette-neutral-50 tracking-tight mb-2">{title}</h1>
-      {description && <p className="text-body-lg text-palette-neutral-600 dark:text-palette-neutral-400 max-w-2xl">{description}</p>}
+      <h1 className="text-display-md font-semibold text-palette-neutral-50 tracking-tight mb-2">{title}</h1>
+      {description && <p className="text-body-lg text-palette-neutral-400 max-w-2xl">{description}</p>}
     </div>
   );
 }

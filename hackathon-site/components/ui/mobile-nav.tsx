@@ -75,7 +75,7 @@ export function MobileNav({ variant = "bottom", className = "" }: { variant?: "b
         className={`fixed bottom-0 left-0 right-0 z-50 ${className}`}
         aria-label="Mobile navigation"
       >
-        <div className="bg-white dark:bg-palette-neutral-900 border-t border-palette-neutral-200 dark:border-palette-neutral-800 px-2 py-2 xs:px-4 safe-area-bottom">
+        <div className="glass-strong border-t border-white/10 px-2 py-2 xs:px-4 safe-area-bottom">
           <div className="flex items-center justify-around h-14 xs:h-16">
             {navItems.map((item) => {
               const isActive = pathname === item.href || (item.href === "/day/12" && pathname?.startsWith("/day/"));
@@ -85,15 +85,15 @@ export function MobileNav({ variant = "bottom", className = "" }: { variant?: "b
                   href={item.href}
                   className={`flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-lg min-w-[60px] transition-all duration-200 ${
                     isActive
-                      ? "text-palette-primary-600 dark:text-palette-primary-400 bg-palette-primary-50 dark:bg-palette-primary-950/30"
-                      : "text-palette-neutral-400 dark:text-palette-neutral-500 hover:text-palette-neutral-600 dark:hover:text-palette-neutral-400 hover:bg-palette-neutral-100 dark:hover:bg-palette-neutral-800"
+                      ? "text-palette-primary-400 bg-palette-primary-500/10 shadow-inner"
+                      : "text-palette-neutral-500 hover:text-palette-neutral-200 hover:bg-white/5"
                   }`}
                   aria-current={isActive ? "page" : undefined}
                 >
                   <span className="text-base">{item.icon}</span>
                   <span className="text-caption font-medium">{item.label}</span>
                   {item.badge && (
-                    <span className="text-[10px] font-bold text-palette-primary-600 dark:text-palette-primary-400 bg-palette-primary-100 dark:bg-palette-primary-900/30 px-1.5 py-0.5 rounded-full min-w-[18px] text-center">
+                    <span className="text-[10px] font-bold text-palette-primary-300 bg-palette-primary-500/20 px-1.5 py-0.5 rounded-full min-w-[18px] text-center">
                       {item.badge}
                     </span>
                   )}
@@ -115,7 +115,7 @@ export function MobileNav({ variant = "bottom", className = "" }: { variant?: "b
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white dark:bg-palette-neutral-900 rounded-full border border-palette-neutral-200 dark:border-palette-neutral-800 shadow-xl px-3 py-1.5 flex items-center gap-1"
+          className="glass-strong rounded-full shadow-xl shadow-palette-neutral-950/60 px-3 py-1.5 flex items-center gap-1"
         >
           {navItems.map((item) => {
             const isActive = pathname === item.href || (item.href === "/day/12" && pathname?.startsWith("/day/"));
@@ -125,8 +125,8 @@ export function MobileNav({ variant = "bottom", className = "" }: { variant?: "b
                 href={item.href}
                 className={`flex items-center justify-center gap-1.5 px-3 py-2 rounded-full transition-all duration-200 ${
                   isActive
-                    ? "bg-palette-primary-600 text-white"
-                    : "text-palette-neutral-500 dark:text-palette-neutral-400 hover:text-palette-neutral-700 dark:hover:text-palette-neutral-300 hover:bg-palette-neutral-100 dark:hover:bg-palette-neutral-800"
+                    ? "bg-gradient-to-b from-palette-primary-500 to-palette-primary-600 text-white shadow-glow"
+                    : "text-palette-neutral-400 hover:text-palette-neutral-100 hover:bg-white/10"
                 }`}
                 aria-current={isActive ? "page" : undefined}
               >
@@ -145,14 +145,14 @@ export function MobileNav({ variant = "bottom", className = "" }: { variant?: "b
       className={`fixed top-0 left-0 right-0 z-50 ${className}`}
       aria-label="Mobile navigation"
     >
-      <div className="bg-white dark:bg-palette-neutral-900 border-b border-palette-neutral-200 dark:border-palette-neutral-800 px-4 py-3 safe-area-top">
+      <div className="glass-strong border-b border-white/10 px-4 py-3 safe-area-top">
         <div className="flex items-center justify-between h-12">
-          <h1 className="text-heading-md font-semibold text-palette-neutral-900 dark:text-palette-neutral-50">
+          <h1 className="text-heading-md font-semibold text-palette-neutral-50">
             Hackathon
           </h1>
           <div className="flex items-center gap-2">
             <StreakFlame count={streakInfo.current} size="sm" />
-            <span className="text-body-sm font-bold text-palette-neutral-900 dark:text-palette-neutral-50 tabular-nums">
+            <span className="text-body-sm font-bold text-palette-neutral-50 tabular-nums">
               {streakInfo.current}
             </span>
           </div>
@@ -192,13 +192,13 @@ export function MobileHeader({
   }
   
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 bg-white dark:bg-palette-neutral-900 border-b border-palette-neutral-200 dark:border-palette-neutral-800 px-4 py-3 safe-area-top ${className}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 glass-strong border-b border-white/10 px-4 py-3 safe-area-top ${className}`}>
       <div className="flex items-center justify-between gap-4 h-12 xs:h-14">
         <div className="flex items-center gap-3 flex-1 min-w-0">
           {showBack && (
             <Link
               href={backHref}
-              className="flex items-center justify-center w-10 h-10 rounded-lg text-palette-neutral-500 dark:text-palette-neutral-400 hover:bg-palette-neutral-100 dark:hover:bg-palette-neutral-800 transition-colors"
+              className="flex items-center justify-center w-10 h-10 rounded-lg text-palette-neutral-400 hover:bg-white/10 transition-colors"
               aria-label="Go back"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -207,18 +207,18 @@ export function MobileHeader({
             </Link>
           )}
           <div className="min-w-0">
-            <h1 className="text-heading-md xs:text-heading-lg font-semibold text-palette-neutral-900 dark:text-palette-neutral-50 truncate">{title}</h1>
-            {subtitle && <p className="text-body-sm text-palette-neutral-500 dark:text-palette-neutral-400 truncate">{subtitle}</p>}
+            <h1 className="text-heading-md xs:text-heading-lg font-semibold text-palette-neutral-50 truncate">{title}</h1>
+            {subtitle && <p className="text-body-sm text-palette-neutral-400 truncate">{subtitle}</p>}
           </div>
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
           {showStreak && (
-            <div className="hidden xs:flex items-center gap-1.5 px-3 py-1.5 bg-palette-accent-100 dark:bg-palette-accent-900/30 rounded-full">
+            <div className="hidden xs:flex items-center gap-1.5 px-3 py-1.5 bg-palette-accent-400/10 border border-palette-accent-400/30 rounded-full backdrop-blur-sm">
               <StreakFlame count={streakInfo.current} size="sm" animated={false} />
-              <span className="text-body-sm font-bold text-palette-accent-700 dark:text-palette-accent-300 tabular-nums">
+              <span className="text-body-sm font-bold text-palette-accent-300 tabular-nums">
                 {streakInfo.current}
               </span>
-              <span className="text-caption text-palette-accent-600 dark:text-palette-accent-400">day streak</span>
+              <span className="text-caption text-palette-accent-300">day streak</span>
             </div>
           )}
           {action}
@@ -246,14 +246,14 @@ export function DesktopHeader({
   const streakInfo = getStreakInfo("default");
   
   return (
-    <header className={`sticky top-0 z-40 bg-white/80 dark:bg-palette-neutral-950/80 backdrop-blur-md border-b border-palette-neutral-200 dark:border-palette-neutral-800 px-4 xs:px-6 lg:px-8 ${className}`}>
+    <header className={`sticky top-0 z-40 glass-strong border-b border-white/10 px-4 xs:px-6 lg:px-8 ${className}`}>
       <div className="container mx-auto h-16 xs:h-16 flex items-center justify-between">
         <div className="flex items-center gap-4 xs:gap-6">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <svg className="w-8 h-8 text-palette-primary-600 dark:text-palette-primary-400" fill="currentColor" viewBox="0 0 24 24">
+            <svg className="w-8 h-8 text-palette-primary-400" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
             </svg>
-            <span className="text-heading-lg font-bold text-palette-neutral-900 dark:text-palette-neutral-50 hidden sm:block">Hackathon</span>
+            <span className="text-heading-lg font-bold text-palette-neutral-50 hidden sm:block">Hackathon</span>
           </Link>
           
           {navigation && (
@@ -262,7 +262,7 @@ export function DesktopHeader({
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="px-3 py-2 text-body-sm font-medium text-palette-neutral-600 dark:text-palette-neutral-400 hover:text-palette-primary-600 dark:hover:text-palette-primary-400 rounded-lg transition-colors"
+                  className="px-3 py-2 text-body-sm font-medium text-palette-neutral-400 hover:text-palette-primary-400 rounded-lg transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -273,27 +273,27 @@ export function DesktopHeader({
         
         <div className="flex items-center gap-4">
           {showStreak && (
-            <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-palette-accent-100 dark:bg-palette-accent-900/30 rounded-full">
+            <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-palette-accent-400/10 border border-palette-accent-400/30 rounded-full backdrop-blur-sm">
               <StreakFlame count={streakInfo.current} size="sm" animated={false} />
-              <span className="text-body-sm font-bold text-palette-accent-700 dark:text-palette-accent-300 tabular-nums">
+              <span className="text-body-sm font-bold text-palette-accent-300 tabular-nums">
                 {streakInfo.current}
               </span>
-              <span className="text-caption text-palette-accent-600 dark:text-palette-accent-400">day streak</span>
+              <span className="text-caption text-palette-accent-300">day streak</span>
             </div>
           )}
           
           {user && (
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-palette-primary-100 dark:bg-palette-primary-900/30 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-palette-primary-500/15 border border-palette-primary-500/40 flex items-center justify-center">
                 {user.avatar ? (
                   <img src={user.avatar} alt="" className="w-8 h-8 rounded-full" />
                 ) : (
-                  <span className="text-body-sm font-medium text-palette-primary-600 dark:text-palette-primary-400">
+                  <span className="text-body-sm font-medium text-palette-primary-300">
                     {user.name.charAt(0).toUpperCase()}
                   </span>
                 )}
               </div>
-              <span className="hidden lg:block text-body-sm font-medium text-palette-neutral-700 dark:text-palette-neutral-300">
+              <span className="hidden lg:block text-body-sm font-medium text-palette-neutral-300">
                 {user.name}
               </span>
             </div>
