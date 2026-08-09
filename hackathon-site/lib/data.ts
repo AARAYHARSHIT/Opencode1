@@ -11,9 +11,13 @@ import type {
   MockDataSet,
 } from "@/lib/types";
 
+const typedChallengeData = challengeData as {
+  variants: Array<{ variant: DataVariant; data: ChallengeData }>;
+};
+
 function getMockDataSet(variant: DataVariant = "default"): MockDataSet {
-  const found = challengeData.variants.find((v) => v.variant === variant);
-  return found || challengeData.variants[0];
+  const found = typedChallengeData.variants.find((v) => v.variant === variant);
+  return found || typedChallengeData.variants[0];
 }
 
 export function getChallengeData(variant: DataVariant = "default"): ChallengeData {
