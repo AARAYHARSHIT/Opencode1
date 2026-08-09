@@ -120,6 +120,4 @@ npm start            # Start production server
 npm run lint         # Run ESLint
 ```
 
-## Deployment
 
-Deploy on [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app) with zero configuration.
