@@ -5,6 +5,9 @@ A mobile-first hackathon platform built with Next.js 16 (App Router), designed t
 ## Getting Started
 
 ```bash
+
+# Change directory
+cd hackathon-site
 # Install dependencies
 npm install
 
