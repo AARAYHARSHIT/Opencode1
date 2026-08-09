@@ -1,9 +1,8 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Html } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { useRef, useMemo } from "react";
-import { motion } from "motion/react";
 import * as THREE from "three";
 
 function CodeBracketMesh() {
@@ -114,11 +113,12 @@ function FloatingParticles() {
 
 export function Scene3D() {
   return (
-    <div className="relative w-full h-64 xs:h-80 lg:h-96">
+    <div className="relative w-full h-full">
       <Canvas
-        camera={{ position: [0, 0, 4.5], fov: 50 }}
+        camera={{ position: [0, 0, 5], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
         className="w-full h-full"
+        style={{ background: 'transparent' }}
       >
         <ambientLight intensity={0.7} />
         <directionalLight position={[5, 5, 5]} intensity={1.0} />
@@ -135,24 +135,6 @@ export function Scene3D() {
           minPolarAngle={Math.PI / 4}
           maxPolarAngle={Math.PI / 1.5}
         />
-        <Html
-          wrapperClass="absolute inset-0 pointer-events-none"
-          prepend
-          center
-          fullscreen
-          distanceFactor={10}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-center px-4"
-          >
-            <p className="text-caption text-palette-neutral-500 font-medium">
-              60-Day Coding Challenge
-            </p>
-          </motion.div>
-        </Html>
       </Canvas>
     </div>
   );

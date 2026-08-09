@@ -110,14 +110,21 @@ This document logs all AI-assisted prompts used to build the 60-Day Coding Chall
 
 ---
 
+### Prompt 15
+> Fix the mobile nav Today link to use actual day number instead of hardcoded day 12. Fix the 3D element cropping by repositioning it to blend into the website properly without showing edges.
+
+**AI Output:** Updated `components/ui/mobile-nav.tsx` to dynamically link to today's day. Repositioned 3D scene in `components/scene3d-wrapper.tsx` as absolute overlay with reduced opacity. Removed Html overlay from `components/three-scene.tsx` and adjusted camera settings for better integration.
+
+---
+
 ## Summary
 
 | Metric | Count |
 |--------|-------|
-| Total Prompts | 14 |
+| Total Prompts | 15 |
 | Files Created | 13 |
-| Files Modified | 4 |
-| Lines of Code | ~2,800+ |
+| Files Modified | 6 |
+| Lines of Code | ~2,900+ |
 | Components Built | 15+ |
 | Pages Implemented | 6 |
 
