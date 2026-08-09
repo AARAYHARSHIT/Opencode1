@@ -56,6 +56,8 @@ function DashboardContent() {
         title="Dashboard" 
         subtitle={`Day ${getTodayDayNumber(variant)} of ${stats.daysTotal}`}
         showStreak={true}
+        showBack={true}
+        backHref="/"
       />
       
       <PageContainer>
@@ -119,6 +121,9 @@ function DashboardContent() {
                     showLabel
                     label={`${Math.max(0, stats.xpToNextLevel)} XP to Level ${stats.level + 1}`}
                   />
+                  <p className="mt-2 text-caption text-palette-neutral-500">
+                    {Math.round(((1000 - stats.xpToNextLevel) / 1000) * 100)}% to next level
+                  </p>
                 </div>
               </Card>
 
@@ -137,6 +142,9 @@ function DashboardContent() {
                     variant="success"
                     className="mt-3"
                   />
+                  <p className="mt-2 text-caption text-palette-neutral-500">
+                    {stats.daysTotal - stats.daysCompleted} days remaining
+                  </p>
                 </div>
               </Card>
             </div>
