@@ -107,8 +107,6 @@ export function getCompletionPercentage(variant: DataVariant = "default"): numbe
 
 export function getDashboardStats(variant: DataVariant = "default"): DashboardStats {
   const profile = getStudentProfile(variant);
-  const track = getTrack(variant);
-  const streak = getStreakState(variant);
   const completionPercentage = getCompletionPercentage(variant);
   const todayStatus = getDayStatus(getTodayDayNumber(variant), variant);
   const upcomingTasks = getDailyTasks(variant)

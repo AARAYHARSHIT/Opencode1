@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { motion } from "motion/react";
 
 const Scene3D = dynamic(() => import("@/components/three-scene").then((mod) => mod.Scene3D), {
   ssr: false,

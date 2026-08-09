@@ -70,7 +70,7 @@ export default function Home() {
                 Animations & 3D Ready
               </h3>
               <p className="text-body-md text-palette-neutral-600 dark:text-palette-neutral-400">
-                Motion for transitions, R3F for 3D accents. All client components marked "use client".
+                Motion for transitions, R3F for 3D accents. All client components marked &ldquo;use client&rdquo;.
               </p>
             </HoverLift>
           </StaggerItem>

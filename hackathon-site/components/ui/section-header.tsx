@@ -2,7 +2,6 @@
 
 import { HTMLAttributes, forwardRef } from "react";
 import { ScrollReveal } from "@/components/animations";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export interface SectionHeaderProps extends HTMLAttributes<HTMLDivElement> {
@@ -89,7 +88,7 @@ export interface PageHeaderProps extends Omit<SectionHeaderProps, "variant"> {
 }
 
 export const PageHeader = forwardRef<HTMLDivElement, PageHeaderProps>(
-  ({ title, description, subtitle, action, badge, align = "left", delay = 0, backLink, className = "", children, ...props }, ref) => {
+  ({ title, description, subtitle, action, badge, delay = 0, backLink, className = "", children, ...props }, ref) => {
     return (
       <div ref={ref} className={`mb-8 xs:mb-12 lg:mb-16 ${className}`} {...props}>
         <ScrollReveal direction="up" delay={delay}>

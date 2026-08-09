@@ -46,7 +46,7 @@ function Mesh() {
   const meshRef = useRef<THREE.Mesh>(null!);
   const groupRef = useRef<THREE.Group>(null!);
 
-  useFrame((_state: any, delta: number) => {
+  useFrame((_state: { clock: THREE.Clock }, delta: number) => {
     if (groupRef.current) {
       groupRef.current.rotation.y += delta * 0.2;
       groupRef.current.rotation.x += delta * 0.1;

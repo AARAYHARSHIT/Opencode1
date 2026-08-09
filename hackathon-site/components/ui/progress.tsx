@@ -68,11 +68,10 @@ export interface CircularProgressProps extends HTMLAttributes<HTMLDivElement> {
   variant?: "default" | "primary" | "success" | "warning" | "destructive";
   showLabel?: boolean;
   label?: string;
-  thickness?: number;
 }
 
 export const CircularProgress = forwardRef<HTMLDivElement, CircularProgressProps>(
-  ({ value, max = 100, size = 64, strokeWidth = 6, variant = "default", showLabel = true, label, thickness, className = "", ...props }, ref) => {
+  ({ value, max = 100, size = 64, strokeWidth = 6, variant = "default", showLabel = true, label, className = "", ...props }, ref) => {
     const percentage = Math.min(100, Math.max(0, (value / max) * 100));
     const radius = (size - strokeWidth) / 2;
     const circumference = 2 * Math.PI * radius;
@@ -142,7 +141,7 @@ export interface StepProgressProps {
   direction?: "horizontal" | "vertical";
 }
 
-export function StepProgress({ currentStep, totalSteps, steps, variant = "default", direction = "horizontal" }: StepProgressProps) {
+export function StepProgress({ currentStep, steps, variant = "default", direction = "horizontal" }: StepProgressProps) {
   const isVertical = direction === "vertical";
   
   return (

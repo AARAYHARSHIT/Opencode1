@@ -56,35 +56,14 @@ const navItems: NavItem[] = [
 
 export function MobileNav({ variant = "bottom", className = "" }: { variant?: "bottom" | "top" | "floating"; className?: string }) {
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
+  const mountedRef = useRef(false);
   
   useEffect(() => {
-    setMounted(true);
+    mountedRef.current = true;
   }, []);
   
-  if (!mounted) {
-    return (
-      <nav
-        className={`fixed bottom-0 left-0 right-0 z-50 ${className}`}
-        aria-label="Mobile navigation"
-      >
-        <div className="bg-white dark:bg-palette-neutral-900 border-t border-palette-neutral-200 dark:border-palette-neutral-800 px-2 py-2 xs:px-4">
-          <div className="flex items-center justify-around h-14 xs:h-16">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="flex flex-col items-center justify-center gap-1 text-palette-neutral-400 dark:text-palette-neutral-500 px-3 py-2 rounded-lg min-w-[60px]"
-                aria-current={pathname === item.href ? "page" : undefined}
-              >
-                <span className="text-base">{item.icon}</span>
-                <span className="text-caption font-medium">{item.label}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </nav>
-    );
+  if (!mountedRef.current) {
+    return null;
   }
   
   const streakInfo = getStreakInfo("default");
@@ -207,21 +186,7 @@ export function MobileHeader({
   }, []);
   
   if (!mounted) {
-    return (
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-palette-neutral-900 border-b border-palette-neutral-200 dark:border-palette-neutral-800 px-4 py-3 safe-area-top ${className}">
-        <div className="flex items-center justify-between h-12">
-          <h1 className="text-heading-md font-semibold text-palette-neutral-900 dark:text-palette-neutral-50">{title}</h1>
-          {showStreak && (
-            <div className="flex items-center gap-2">
-              <StreakFlame count={streakInfo.current} size="sm" />
-              <span className="text-body-sm font-bold text-palette-neutral-900 dark:text-palette-neutral-50 tabular-nums">
-                {streakInfo.current}
-              </span>
-            </div>
-          )}
-        </div>
-      </header>
-    );
+    return null;
   }
   
   return (

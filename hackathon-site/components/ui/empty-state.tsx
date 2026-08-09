@@ -1,7 +1,7 @@
 "use client";
 
 import { HTMLAttributes, forwardRef } from "react";
-import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
+import { ScrollReveal } from "@/components/animations";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -170,7 +170,7 @@ export function EmptySubmissionsState({ onAction }: { onAction?: React.ReactNode
       illustration="folder"
       size="md"
       variant="card"
-      action={<Button onClick={() => {}}>View Today's Task</Button>}
+      action={<Button onClick={() => {}}>View Today&apos;s Task</Button>}
     >
       {onAction}
     </EmptyState>
