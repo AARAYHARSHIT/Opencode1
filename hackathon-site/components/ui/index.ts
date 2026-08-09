@@ -5,4 +5,8 @@ export { Progress, CircularProgress, StepProgress, type ProgressProps, type Circ
 export { StreakDisplay, StreakFlame, type StreakDisplayProps, type StreakFlameProps } from "./streak-display";
 export { SectionHeader, PageHeader, DayHeader, type SectionHeaderProps, type PageHeaderProps } from "./section-header";
 export { EmptyState, EmptyProfileState, EmptyChallengeState, EmptySubmissionsState, EmptyAchievementsState, EmptySearchState, EmptyErrorState, type EmptyStateProps } from "./empty-state";
-export { MobileNav, MobileHeader, DesktopHeader, PageContainer, MobilePageContainer, type NavItem } from "./mobile-nav";
+export { MobileHeader, DesktopHeader, PageContainer, MobilePageContainer } from "./mobile-nav";
+export { AnimatedCounter } from "./animated-counter";
+export { ProgressRing } from "./progress-ring";
+export { FloatingActionButton, ContextualNav } from "./fab-nav";
+export { PageTransition } from "./page-transition";

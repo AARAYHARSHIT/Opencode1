@@ -2,13 +2,17 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
-import { MobileHeader, PageContainer, MobileNav } from "@/components/ui/mobile-nav";
+import { MobileHeader, PageContainer } from "@/components/ui/mobile-nav";
+import { FloatingActionButton, ContextualNav } from "@/components/ui/fab-nav";
+import { PageTransition } from "@/components/ui/page-transition";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { getChallengeData } from "@/lib/data";
 import type { Achievement } from "@/lib/types";
 
@@ -52,183 +56,193 @@ function AchievementsContent() {
   const totalCount = allAchievements.length;
 
   return (
-    <div className="min-h-screen">
-      <MobileHeader
-        title="Achievements"
-        subtitle={`${unlockedCount} of ${totalCount} unlocked`}
-        showBack={true}
-        backHref="/dashboard"
-        showStreak={true}
-      />
+    <PageTransition>
+      <div className="min-h-screen">
+        <MobileHeader
+          title="Achievements"
+          subtitle={`${unlockedCount} of ${totalCount} unlocked`}
+          showBack={true}
+          backHref="/dashboard"
+          showStreak={true}
+        />
 
-      <PageContainer>
-        <div className="space-y-8">
-          <ScrollReveal direction="up">
-            <Card variant="elevated" padding="lg" className="relative overflow-hidden">
-              <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-gradient-to-r from-palette-accent-400/20 to-palette-primary-500/20 blur-3xl" />
-              <div className="relative">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-palette-accent-400/30 to-palette-primary-500/30 border border-palette-accent-400/40 flex items-center justify-center shadow-glow-sm">
-                    <span className="text-3xl">🏆</span>
-                  </div>
-                  <div>
-                    <h2 className="text-heading-xl font-bold text-palette-neutral-50">Achievement Progress</h2>
-                    <p className="text-body-md text-palette-neutral-400">Track your milestones and unlock rewards</p>
-                  </div>
-                </div>
-                <div className="mt-4">
-                  <Progress
-                    value={unlockedCount}
-                    max={totalCount}
-                    size="md"
-                    variant="primary"
-                    showLabel
-                    label={`${unlockedCount}/${totalCount} achievements unlocked`}
-                  />
-                </div>
-                <div className="mt-4 grid grid-cols-2 xs:grid-cols-4 gap-3">
-                  <div className="text-center p-3 glass rounded-xl">
-                    <p className="text-heading-lg font-bold text-palette-accent-300">{unlockedCount}</p>
-                    <p className="text-caption text-palette-neutral-500">Unlocked</p>
-                  </div>
-                  <div className="text-center p-3 glass rounded-xl">
-                    <p className="text-heading-lg font-bold text-palette-neutral-300">{totalCount - unlockedCount}</p>
-                    <p className="text-caption text-palette-neutral-500">Locked</p>
-                  </div>
-                  <div className="text-center p-3 glass rounded-xl">
-                    <p className="text-heading-lg font-bold text-palette-primary-400">{Math.round((unlockedCount / totalCount) * 100)}%</p>
-                    <p className="text-caption text-palette-neutral-500">Complete</p>
-                  </div>
-                  <div className="text-center p-3 glass rounded-xl">
-                    <p className="text-heading-lg font-bold text-palette-green-400">
-                      {allAchievements.filter((a) => a.progress === a.target && !a.unlockedAt).length}
-                    </p>
-                    <p className="text-caption text-palette-neutral-500">Ready to Claim</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </ScrollReveal>
-
-          <ScrollReveal direction="up" delay={0.1}>
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
-              {(Object.keys(categoryLabels) as CategoryFilter[]).map((cat) => (
-                <Button
-                  key={cat}
-                  variant={activeCategory === cat ? "primary" : "ghost"}
-                  size="sm"
-                  onClick={() => setActiveCategory(cat)}
-                  className="flex-shrink-0"
-                >
-                  {categoryLabels[cat]}
-                  {cat !== "all" && (
-                    <span className="ml-1.5 text-caption">
-                      {allAchievements.filter((a) => a.category === cat).length}
-                    </span>
-                  )}
-                </Button>
-              ))}
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal direction="up" delay={0.15}>
-            <SectionHeader
-              title={`${activeCategory === "all" ? "All" : categoryLabels[activeCategory]} Achievements`}
-              variant="minimal"
-              badge={<Badge variant="secondary">{filteredAchievements.length}</Badge>}
-            />
-          </ScrollReveal>
-
-          <StaggerContainer staggerDelay={0.05}>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredAchievements.map((achievement) => (
-                <StaggerItem key={achievement.id}>
-                  <Card
-                    variant="elevated"
-                    padding="md"
-                    hover
-                    className={`relative overflow-hidden ${achievement.unlockedAt ? "" : "opacity-70"}`}
-                  >
-                    {achievement.unlockedAt && (
-                      <div className="absolute top-3 right-3">
-                        <Badge variant="success" size="sm">Unlocked</Badge>
-                      </div>
-                    )}
-                    <div className="flex items-start gap-3">
-                      <div
-                        className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 ${
-                          achievement.unlockedAt
-                            ? "bg-gradient-to-br from-palette-primary-500/30 to-palette-accent-400/30 border border-palette-primary-400/40 shadow-glow-sm"
-                            : "bg-palette-neutral-800 border border-palette-neutral-700"
-                        }`}
-                      >
-                        {achievement.icon}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-body-md font-semibold text-palette-neutral-50 truncate">
-                          {achievement.title}
-                        </h4>
-                        <p className="mt-1 text-body-sm text-palette-neutral-400 line-clamp-2">
-                          {achievement.description}
-                        </p>
-                        <div className="mt-3">
-                          <Progress
-                            value={achievement.progress}
-                            max={achievement.target}
-                            size="sm"
-                            variant={
-                              achievement.progress >= achievement.target
-                                ? "success"
-                                : achievement.progress > 0
-                                ? "primary"
-                                : "default"
-                            }
-                          />
-                          <div className="mt-1.5 flex items-center justify-between">
-                            <span className="text-caption text-palette-neutral-500">
-                              {achievement.progress}/{achievement.target}
-                            </span>
-                            <Badge variant="outline" size="sm" className="capitalize">
-                              {achievement.category}
-                            </Badge>
-                          </div>
-                        </div>
-                        {achievement.unlockedAt && (
-                          <p className="mt-2 text-caption text-palette-green-400 font-medium">
-                            Unlocked {new Date(achievement.unlockedAt).toLocaleDateString()}
-                          </p>
-                        )}
-                      </div>
+        <PageContainer>
+          <div className="space-y-8">
+            <ScrollReveal direction="up">
+              <Card variant="elevated" padding="lg" className="relative overflow-hidden">
+                <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-gradient-to-r from-palette-accent-400/20 to-palette-primary-500/20 blur-3xl" />
+                <div className="relative">
+                  <div className="flex items-center gap-4 mb-4">
+                    <motion.div
+                      className="w-16 h-16 rounded-2xl bg-gradient-to-br from-palette-accent-400/30 to-palette-primary-500/30 border border-palette-accent-400/40 flex items-center justify-center shadow-glow-sm"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                    >
+                      <span className="text-3xl">🏆</span>
+                    </motion.div>
+                    <div>
+                      <h2 className="text-heading-xl font-bold text-palette-neutral-50">Achievement Progress</h2>
+                      <p className="text-body-md text-palette-neutral-400">Track your milestones and unlock rewards</p>
                     </div>
-                  </Card>
-                </StaggerItem>
-              ))}
-            </div>
-          </StaggerContainer>
-
-          <ScrollReveal direction="up" delay={0.3} className="mt-4">
-            <Card variant="elevated" padding="lg" className="relative overflow-hidden">
-              <div className="absolute -bottom-16 -right-16 w-64 h-64 rounded-full bg-gradient-to-r from-palette-primary-500/20 to-palette-accent-400/20 blur-3xl" />
-              <div className="relative flex flex-col xs:flex-row xs:items-center xs:justify-between gap-4">
-                <div>
-                  <p className="text-heading-md font-semibold text-palette-neutral-50">Keep earning!</p>
-                  <p className="mt-1 text-body-md text-palette-neutral-400">
-                    Complete more challenges and maintain streaks to unlock all achievements.
-                  </p>
+                  </div>
+                  <div className="mt-4">
+                    <Progress
+                      value={unlockedCount}
+                      max={totalCount}
+                      size="md"
+                      variant="primary"
+                      showLabel
+                      label={`${unlockedCount}/${totalCount} achievements unlocked`}
+                    />
+                  </div>
+                  <div className="mt-4 grid grid-cols-2 xs:grid-cols-4 gap-3">
+                    <div className="text-center p-3 glass rounded-xl">
+                      <AnimatedCounter value={unlockedCount} className="text-heading-lg font-bold text-palette-accent-300" />
+                      <p className="text-caption text-palette-neutral-500">Unlocked</p>
+                    </div>
+                    <div className="text-center p-3 glass rounded-xl">
+                      <AnimatedCounter value={totalCount - unlockedCount} className="text-heading-lg font-bold text-palette-neutral-300" />
+                      <p className="text-caption text-palette-neutral-500">Locked</p>
+                    </div>
+                    <div className="text-center p-3 glass rounded-xl">
+                      <AnimatedCounter value={Math.round((unlockedCount / totalCount) * 100)} suffix="%" className="text-heading-lg font-bold text-palette-primary-400" />
+                      <p className="text-caption text-palette-neutral-500">Complete</p>
+                    </div>
+                    <div className="text-center p-3 glass rounded-xl">
+                      <AnimatedCounter
+                        value={allAchievements.filter((a) => a.progress === a.target && !a.unlockedAt).length}
+                        className="text-heading-lg font-bold text-palette-green-400"
+                      />
+                      <p className="text-caption text-palette-neutral-500">Ready to Claim</p>
+                    </div>
+                  </div>
                 </div>
-                <Link href="/dashboard">
-                  <Button size="lg" className="w-full xs:w-auto">
-                    Back to Dashboard →
-                  </Button>
-                </Link>
-              </div>
-            </Card>
-          </ScrollReveal>
-        </div>
-      </PageContainer>
+              </Card>
+            </ScrollReveal>
 
-      <MobileNav />
-    </div>
+            <ScrollReveal direction="up" delay={0.1}>
+              <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                {(Object.keys(categoryLabels) as CategoryFilter[]).map((cat) => (
+                  <Button
+                    key={cat}
+                    variant={activeCategory === cat ? "primary" : "ghost"}
+                    size="sm"
+                    onClick={() => setActiveCategory(cat)}
+                    className="flex-shrink-0"
+                  >
+                    {categoryLabels[cat]}
+                    {cat !== "all" && (
+                      <span className="ml-1.5 text-caption">
+                        {allAchievements.filter((a) => a.category === cat).length}
+                      </span>
+                    )}
+                  </Button>
+                ))}
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.15}>
+              <SectionHeader
+                title={`${activeCategory === "all" ? "All" : categoryLabels[activeCategory]} Achievements`}
+                variant="minimal"
+                badge={<Badge variant="secondary">{filteredAchievements.length}</Badge>}
+              />
+            </ScrollReveal>
+
+            <StaggerContainer staggerDelay={0.05}>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredAchievements.map((achievement) => (
+                  <StaggerItem key={achievement.id}>
+                    <Card
+                      variant="elevated"
+                      padding="md"
+                      hover
+                      className={`relative overflow-hidden ${achievement.unlockedAt ? "" : "opacity-70"}`}
+                    >
+                      {achievement.unlockedAt && (
+                        <div className="absolute top-3 right-3">
+                          <Badge variant="success" size="sm">Unlocked</Badge>
+                        </div>
+                      )}
+                      <div className="flex items-start gap-3">
+                        <motion.div
+                          className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 ${
+                            achievement.unlockedAt
+                              ? "bg-gradient-to-br from-palette-primary-500/30 to-palette-accent-400/30 border border-palette-primary-400/40 shadow-glow-sm"
+                              : "bg-palette-neutral-800 border border-palette-neutral-700"
+                          }`}
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        >
+                          {achievement.icon}
+                        </motion.div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-body-md font-semibold text-palette-neutral-50 truncate">
+                            {achievement.title}
+                          </h4>
+                          <p className="mt-1 text-body-sm text-palette-neutral-400 line-clamp-2">
+                            {achievement.description}
+                          </p>
+                          <div className="mt-3">
+                            <Progress
+                              value={achievement.progress}
+                              max={achievement.target}
+                              size="sm"
+                              variant={
+                                achievement.progress >= achievement.target
+                                  ? "success"
+                                  : achievement.progress > 0
+                                  ? "primary"
+                                  : "default"
+                              }
+                            />
+                            <div className="mt-1.5 flex items-center justify-between">
+                              <span className="text-caption text-palette-neutral-500">
+                                {achievement.progress}/{achievement.target}
+                              </span>
+                              <Badge variant="outline" size="sm" className="capitalize">
+                                {achievement.category}
+                              </Badge>
+                            </div>
+                          </div>
+                          {achievement.unlockedAt && (
+                            <p className="mt-2 text-caption text-palette-green-400 font-medium">
+                              Unlocked {new Date(achievement.unlockedAt).toLocaleDateString()}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </Card>
+                  </StaggerItem>
+                ))}
+              </div>
+            </StaggerContainer>
+
+            <ScrollReveal direction="up" delay={0.3} className="mt-4">
+              <Card variant="elevated" padding="lg" className="relative overflow-hidden">
+                <div className="absolute -bottom-16 -right-16 w-64 h-64 rounded-full bg-gradient-to-r from-palette-primary-500/20 to-palette-accent-400/20 blur-3xl" />
+                <div className="relative flex flex-col xs:flex-row xs:items-center xs:justify-between gap-4">
+                  <div>
+                    <p className="text-heading-md font-semibold text-palette-neutral-50">Keep earning!</p>
+                    <p className="mt-1 text-body-md text-palette-neutral-400">
+                      Complete more challenges and maintain streaks to unlock all achievements.
+                    </p>
+                  </div>
+                  <Link href="/dashboard">
+                    <Button size="lg" className="w-full xs:w-auto">
+                      Back to Dashboard
+                    </Button>
+                  </Link>
+                </div>
+              </Card>
+            </ScrollReveal>
+          </div>
+        </PageContainer>
+
+        <FloatingActionButton />
+        <ContextualNav />
+      </div>
+    </PageTransition>
   );
 }
 

@@ -2,164 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { motion } from "motion/react";
 import { StreakFlame } from "@/components/ui/streak-display";
-import { getStreakInfo, getTodayDayNumber } from "@/lib/data";
+import { getStreakInfo } from "@/lib/data";
 
 export interface NavItem {
   href: string;
   label: string;
   icon: React.ReactNode;
   badge?: number | string;
-}
-
-const navItems: NavItem[] = [
-  {
-    href: "/dashboard",
-    label: "Dashboard",
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-      </svg>
-    ),
-  },
-  {
-    href: `/day/${getTodayDayNumber("default")}`,
-    label: "Today",
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-    ),
-    badge: getTodayDayNumber("default"),
-  },
-  {
-    href: "/progress",
-    label: "Progress",
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-      </svg>
-    ),
-  },
-  {
-    href: "/achievements",
-    label: "Achievements",
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-    ),
-  },
-];
-
-export function MobileNav({ variant = "bottom", className = "" }: { variant?: "bottom" | "top" | "floating"; className?: string }) {
-  const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
-  
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
-  }, []);
-  
-  if (!mounted) {
-    return null;
-  }
-  
-  const streakInfo = getStreakInfo("default");
-  
-  if (variant === "bottom") {
-    return (
-      <nav
-        className={`fixed bottom-0 left-0 right-0 z-50 ${className}`}
-        aria-label="Mobile navigation"
-      >
-        <div className="glass-strong border-t border-white/10 px-2 py-2 xs:px-4 safe-area-bottom">
-          <div className="flex items-center justify-around h-14 xs:h-16">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href || (item.href === "/day/12" && pathname?.startsWith("/day/"));
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-lg min-w-[60px] transition-all duration-200 ${
-                    isActive
-                      ? "text-palette-primary-400 bg-palette-primary-500/10 shadow-inner"
-                      : "text-palette-neutral-500 hover:text-palette-neutral-200 hover:bg-white/5"
-                  }`}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  <span className="text-base">{item.icon}</span>
-                  <span className="text-caption font-medium">{item.label}</span>
-                  {item.badge && (
-                    <span className="text-[10px] font-bold text-palette-primary-300 bg-palette-primary-500/20 px-1.5 py-0.5 rounded-full min-w-[18px] text-center">
-                      {item.badge}
-                    </span>
-                  )}
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </nav>
-    );
-  }
-  
-  if (variant === "floating") {
-    return (
-      <nav
-        className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 ${className}`}
-        aria-label="Mobile navigation"
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="glass-strong rounded-full shadow-xl shadow-palette-neutral-950/60 px-3 py-1.5 flex items-center gap-1"
-        >
-          {navItems.map((item) => {
-            const isActive = pathname === item.href || (item.href === "/day/12" && pathname?.startsWith("/day/"));
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`flex items-center justify-center gap-1.5 px-3 py-2 rounded-full transition-all duration-200 ${
-                  isActive
-                    ? "bg-gradient-to-b from-palette-primary-500 to-palette-primary-600 text-white shadow-glow"
-                    : "text-palette-neutral-400 hover:text-palette-neutral-100 hover:bg-white/10"
-                }`}
-                aria-current={isActive ? "page" : undefined}
-              >
-                <span className="text-base">{item.icon}</span>
-                <span className="text-body-sm font-medium hidden sm:inline">{item.label}</span>
-              </Link>
-            );
-          })}
-        </motion.div>
-      </nav>
-    );
-  }
-  
-  return (
-    <header
-      className={`sticky top-0 z-40 ${className}`}
-      aria-label="Mobile navigation"
-    >
-      <div className="glass-strong border-b border-white/10 px-4 py-3 safe-area-top">
-        <div className="flex items-center justify-between h-12">
-          <h1 className="text-heading-md font-semibold text-palette-neutral-50">
-            Hackathon
-          </h1>
-          <div className="flex items-center gap-2">
-            <StreakFlame count={streakInfo.current} size="sm" />
-            <span className="text-body-sm font-bold text-palette-neutral-50 tabular-nums">
-              {streakInfo.current}
-            </span>
-          </div>
-        </div>
-      </div>
-    </header>
-  );
 }
 
 export function MobileHeader({
@@ -181,16 +31,15 @@ export function MobileHeader({
 }) {
   const [mounted, setMounted] = useState(false);
   const streakInfo = getStreakInfo("default");
-  
+
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
-  
+
   if (!mounted) {
     return null;
   }
-  
+
   return (
     <header className={`sticky top-0 z-40 glass-strong border-b border-white/10 px-4 py-3 safe-area-top ${className}`}>
       <div className="flex items-center justify-between gap-4 h-12 xs:h-14">
@@ -198,7 +47,7 @@ export function MobileHeader({
           {showBack && (
             <Link
               href={backHref}
-              className="flex items-center justify-center w-10 h-10 rounded-lg text-palette-neutral-400 hover:bg-white/10 transition-colors"
+              className="flex items-center justify-center w-10 h-10 rounded-xl text-palette-neutral-400 hover:bg-white/10 hover:text-palette-neutral-200 transition-all duration-200 active:scale-95"
               aria-label="Go back"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -244,7 +93,7 @@ export function DesktopHeader({
   className?: string;
 }) {
   const streakInfo = getStreakInfo("default");
-  
+
   return (
     <header className={`sticky top-0 z-40 glass-strong border-b border-white/10 px-4 xs:px-6 lg:px-8 ${className}`}>
       <div className="container mx-auto h-16 xs:h-16 flex items-center justify-between">
@@ -255,10 +104,14 @@ export function DesktopHeader({
             </svg>
             <span className="text-heading-lg font-bold text-palette-neutral-50 hidden sm:block">Hackathon</span>
           </Link>
-          
+
           {navigation && (
             <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
-              {navItems.map((item) => (
+              {[
+                { href: "/dashboard", label: "Home" },
+                { href: "/progress", label: "Progress" },
+                { href: "/achievements", label: "Awards" },
+              ].map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -270,7 +123,7 @@ export function DesktopHeader({
             </nav>
           )}
         </div>
-        
+
         <div className="flex items-center gap-4">
           {showStreak && (
             <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-palette-accent-400/10 border border-palette-accent-400/30 rounded-full backdrop-blur-sm">
@@ -281,7 +134,7 @@ export function DesktopHeader({
               <span className="text-caption text-palette-accent-300">day streak</span>
             </div>
           )}
-          
+
           {user && (
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-palette-primary-500/15 border border-palette-primary-500/40 flex items-center justify-center">
@@ -306,7 +159,7 @@ export function DesktopHeader({
 
 export function PageContainer({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`min-h-screen pt-16 xs:pt-20 lg:pt-24 pb-20 xs:pb-24 ${className}`}>
+    <div className={`min-h-screen pt-16 xs:pt-20 lg:pt-24 pb-8 sm:pb-8 lg:pb-8 ${className}`}>
       <main className="container mx-auto px-4 xs:px-6 lg:px-8">
         {children}
       </main>
@@ -316,7 +169,7 @@ export function PageContainer({ children, className = "" }: { children: React.Re
 
 export function MobilePageContainer({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`min-h-screen pt-16 xs:pt-20 pb-20 xs:pb-24 ${className}`}>
+    <div className={`min-h-screen pt-16 xs:pt-20 pb-8 ${className}`}>
       <main className="px-4 xs:px-6">
         {children}
       </main>

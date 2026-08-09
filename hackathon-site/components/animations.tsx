@@ -1,6 +1,22 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, Variants } from "motion/react";
+
+function usePrefersReducedMotion() {
+  const [prefersReduced, setPrefersReduced] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReduced(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) => setPrefersReduced(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+
+  return prefersReduced;
+}
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -15,19 +31,25 @@ export function ScrollReveal({
   delay = 0,
   direction = "up",
 }: ScrollRevealProps) {
+  const prefersReduced = usePrefersReducedMotion();
+
+  if (prefersReduced) {
+    return <div className={className}>{children}</div>;
+  }
+
   const variants: Variants = {
     hidden: {
       opacity: 0,
-      y: direction === "up" ? 30 : direction === "down" ? -30 : 0,
-      x: direction === "left" ? 30 : direction === "right" ? -30 : 0,
+      y: direction === "up" ? 24 : direction === "down" ? -24 : 0,
+      x: direction === "left" ? 24 : direction === "right" ? -24 : 0,
     },
     visible: {
       opacity: 1,
       y: 0,
       x: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94] as const,
+        duration: 0.5,
+        ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
   };
@@ -36,7 +58,7 @@ export function ScrollReveal({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: "-40px" }}
       variants={variants}
       transition={{ delay }}
       className={className}
@@ -55,13 +77,15 @@ interface StaggerContainerProps {
 export function StaggerContainer({
   children,
   className = "",
-  staggerDelay = 0.1,
+  staggerDelay = 0.08,
 }: StaggerContainerProps) {
+  const prefersReduced = usePrefersReducedMotion();
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: staggerDelay },
+      transition: { staggerChildren: prefersReduced ? 0 : staggerDelay },
     },
   };
 
@@ -83,11 +107,11 @@ interface StaggerItemProps {
 }
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
 
@@ -108,7 +132,7 @@ interface HoverLiftProps {
   lift?: number;
 }
 
-export function HoverLift({ children, className = "", lift = -8 }: HoverLiftProps) {
+export function HoverLift({ children, className = "", lift = -6 }: HoverLiftProps) {
   return (
     <motion.div
       whileHover={{ y: lift, transition: { duration: 0.2 } }}

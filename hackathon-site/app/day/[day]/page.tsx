@@ -3,8 +3,11 @@
 import { useState, useMemo } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { ScrollReveal } from "@/components/animations";
-import { MobileHeader, PageContainer, MobileNav } from "@/components/ui/mobile-nav";
+import { MobileHeader, PageContainer } from "@/components/ui/mobile-nav";
+import { FloatingActionButton, ContextualNav } from "@/components/ui/fab-nav";
+import { PageTransition } from "@/components/ui/page-transition";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge, StatusBadge } from "@/components/ui/badge";
@@ -48,42 +51,49 @@ const VALIDATORS = {
 
 function LockedDayView({ dayNumber, todayDay, coachMessage }: { dayNumber: number; todayDay: number; coachMessage: { title: string; message: string } }) {
   return (
-    <div className="min-h-screen">
-      <MobileHeader title={`Day ${dayNumber}`} showStreak={true} />
-      <PageContainer>
-        <ScrollReveal direction="up">
-          <div className="mb-8">
-            <span className="text-caption font-mono text-palette-neutral-500">Day {dayNumber} of 60</span>
-            <Badge variant="outline" className="ml-3">Locked</Badge>
-          </div>
-          <h1 className="text-display-md font-semibold text-palette-neutral-50 tracking-tight">Day {dayNumber}</h1>
-        </ScrollReveal>
-        <ScrollReveal direction="up" delay={0.1}>
-          <Card variant="elevated" padding="lg">
-            <div className="text-center py-12">
-              <div className="w-20 h-20 mx-auto mb-6 rounded-2xl glass flex items-center justify-center shadow-glow-sm">
-                <svg className="w-10 h-10 text-palette-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-              </div>
-              <h2 className="text-heading-xl font-semibold text-palette-neutral-50">This day is locked</h2>
-              <p className="mt-3 text-body-md text-palette-neutral-400 max-w-md mx-auto">
-                Complete Day {todayDay} first. Challenges unlock sequentially.
-              </p>
-              <div className="mt-8">
-                <Link href={`/day/${todayDay}`}>
-                  <Button size="lg">Go to Today&apos;s Task (Day {todayDay}) →</Button>
-                </Link>
-              </div>
+    <PageTransition>
+      <div className="min-h-screen">
+        <MobileHeader title={`Day ${dayNumber}`} showStreak={true} />
+        <PageContainer>
+          <ScrollReveal direction="up">
+            <div className="mb-8">
+              <span className="text-caption font-mono text-palette-neutral-500">Day {dayNumber} of 60</span>
+              <Badge variant="outline" className="ml-3">Locked</Badge>
             </div>
-          </Card>
-        </ScrollReveal>
-        <ScrollReveal direction="up" delay={0.15}>
-          <CoachCard coachMessage={coachMessage} />
-        </ScrollReveal>
-      </PageContainer>
-      <MobileNav />
-    </div>
+            <h1 className="text-display-md font-semibold text-palette-neutral-50 tracking-tight">Day {dayNumber}</h1>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={0.1}>
+            <Card variant="elevated" padding="lg">
+              <div className="text-center py-12">
+                <motion.div
+                  className="w-20 h-20 mx-auto mb-6 rounded-2xl glass flex items-center justify-center shadow-glow-sm"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                >
+                  <svg className="w-10 h-10 text-palette-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </motion.div>
+                <h2 className="text-heading-xl font-semibold text-palette-neutral-50">This day is locked</h2>
+                <p className="mt-3 text-body-md text-palette-neutral-400 max-w-md mx-auto">
+                  Complete Day {todayDay} first. Challenges unlock sequentially.
+                </p>
+                <div className="mt-8">
+                  <Link href={`/day/${todayDay}`}>
+                    <Button size="lg">Go to Today&apos;s Task (Day {todayDay})</Button>
+                  </Link>
+                </div>
+              </div>
+            </Card>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={0.15}>
+            <CoachCard coachMessage={coachMessage} />
+          </ScrollReveal>
+        </PageContainer>
+        <FloatingActionButton />
+        <ContextualNav />
+      </div>
+    </PageTransition>
   );
 }
 
@@ -91,11 +101,15 @@ function CoachCard({ coachMessage }: { coachMessage: { title: string; message: s
   return (
     <Card variant="elevated" padding="lg" className="mt-4">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-palette-accent-400/10 border border-palette-accent-400/30 flex items-center justify-center flex-shrink-0">
+        <motion.div
+          className="w-10 h-10 rounded-full bg-palette-accent-400/10 border border-palette-accent-400/30 flex items-center justify-center flex-shrink-0"
+          animate={{ rotate: [0, 5, -5, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        >
           <svg className="w-5 h-5 text-palette-accent-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
           </svg>
-        </div>
+        </motion.div>
         <div>
           <p className="text-body-sm font-semibold text-palette-accent-200">{coachMessage.title}</p>
           <p className="text-body-sm text-palette-accent-300/80">{coachMessage.message}</p>
@@ -149,7 +163,7 @@ function SubmissionForm({ dayNumber, xpReward }: { dayNumber: number; xpReward: 
         </div>
         <Link href={dayNumber < 60 ? `/day/${dayNumber + 1}` : "/dashboard"}>
           <Button className="w-full" size="lg">
-            {dayNumber < 60 ? `Continue to Day ${dayNumber + 1} →` : "View Dashboard"}
+            {dayNumber < 60 ? `Continue to Day ${dayNumber + 1}` : "View Dashboard"}
           </Button>
         </Link>
       </div>
@@ -220,20 +234,23 @@ export default function DayPage() {
 
   if (dayNumber < 1 || dayNumber > track.totalDays) {
     return (
-      <div className="min-h-screen">
-        <MobileHeader title="Invalid Day" showStreak={false} />
-        <PageContainer>
-          <EmptyState
-            title="Invalid Day"
-            description="Please select a valid day from the challenge."
-            illustration="calendar"
-            size="lg"
-            variant="card"
-            action={<Link href="/dashboard"><Button>Back to Dashboard</Button></Link>}
-          />
-        </PageContainer>
-        <MobileNav />
-      </div>
+      <PageTransition>
+        <div className="min-h-screen">
+          <MobileHeader title="Invalid Day" showStreak={false} />
+          <PageContainer>
+            <EmptyState
+              title="Invalid Day"
+              description="Please select a valid day from the challenge."
+              illustration="calendar"
+              size="lg"
+              variant="card"
+              action={<Link href="/dashboard"><Button>Back to Dashboard</Button></Link>}
+            />
+          </PageContainer>
+          <FloatingActionButton />
+          <ContextualNav />
+        </div>
+      </PageTransition>
     );
   }
 
@@ -248,155 +265,162 @@ export default function DayPage() {
   const isMissed = status === "missed";
 
   return (
-    <div className="min-h-screen">
-      <MobileHeader
-        title={`Day ${dayNumber}`}
-        subtitle={task.title}
-        showStreak={true}
-        showBack={true}
-        backHref="/dashboard"
-      />
-      <PageContainer>
-        <div className="space-y-6">
-          <ScrollReveal direction="up">
-            <div className="mb-2">
-              <span className="text-caption font-mono text-palette-neutral-500">Day {dayNumber} of {track.totalDays}</span>
-              <Badge variant="outline" className="ml-3"><StatusBadge status={status} size="sm" /></Badge>
-            </div>
-            <h1 className="text-display-md font-semibold text-palette-neutral-50 tracking-tight">{task.title}</h1>
-            <p className="mt-3 text-body-lg text-palette-neutral-400">{task.description}</p>
-          </ScrollReveal>
+    <PageTransition>
+      <div className="min-h-screen">
+        <MobileHeader
+          title={`Day ${dayNumber}`}
+          subtitle={task.title}
+          showStreak={true}
+          showBack={true}
+          backHref="/dashboard"
+        />
+        <PageContainer>
+          <div className="space-y-6">
+            <ScrollReveal direction="up">
+              <div className="mb-2">
+                <span className="text-caption font-mono text-palette-neutral-500">Day {dayNumber} of {track.totalDays}</span>
+                <Badge variant="outline" className="ml-3"><StatusBadge status={status} size="sm" /></Badge>
+              </div>
+              <h1 className="text-display-md font-semibold text-palette-neutral-50 tracking-tight">{task.title}</h1>
+              <p className="mt-3 text-body-lg text-palette-neutral-400">{task.description}</p>
+            </ScrollReveal>
 
-          {isMissed && (
-            <ScrollReveal direction="up" delay={0.05}>
-              <Card variant="elevated" padding="lg">
-                <div className="flex items-start gap-3 p-4 bg-palette-red-500/10 border border-palette-red-500/40 rounded-xl backdrop-blur-sm">
-                  <div className="w-10 h-10 rounded-full bg-palette-red-500/20 flex items-center justify-center flex-shrink-0">
-                    <svg className="w-5 h-5 text-palette-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                    </svg>
+            {isMissed && (
+              <ScrollReveal direction="up" delay={0.05}>
+                <Card variant="elevated" padding="lg">
+                  <div className="flex items-start gap-3 p-4 bg-palette-red-500/10 border border-palette-red-500/40 rounded-xl backdrop-blur-sm">
+                    <div className="w-10 h-10 rounded-full bg-palette-red-500/20 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 text-palette-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-body-sm font-semibold text-palette-red-300">This day was missed</p>
+                      <p className="mt-1 text-body-sm text-palette-red-300/80">You can still complete it now to earn partial XP. Your streak won&apos;t recover until you complete today&apos;s task.</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-body-sm font-semibold text-palette-red-300">This day was missed</p>
-                    <p className="mt-1 text-body-sm text-palette-red-300/80">You can still complete it now to earn partial XP. Your streak won&apos;t recover until you complete today&apos;s task.</p>
+                </Card>
+              </ScrollReveal>
+            )}
+
+            <ScrollReveal direction="up" delay={0.1}>
+              <Card variant="elevated" padding="lg">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
+                  <motion.div
+                    className="w-14 h-14 rounded-xl bg-gradient-to-br from-palette-primary-500 to-palette-secondary-400 shadow-glow-sm flex items-center justify-center flex-shrink-0"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  >
+                    <span className="text-heading-lg font-bold text-white font-mono">Day {dayNumber}</span>
+                  </motion.div>
+                  <div className="flex-1">
+                    <h2 className="text-heading-lg font-semibold text-palette-neutral-50">{task.title}</h2>
+                  </div>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <Badge variant="outline" size="sm">{task.category}</Badge>
+                    <Badge variant={task.difficulty === "hard" ? "destructive" : task.difficulty === "medium" ? "warning" : "success"} size="sm">{task.difficulty}</Badge>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-4 text-body-sm text-palette-neutral-400">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-palette-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span>{task.estimatedMinutes} minutes</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-palette-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    <span>+{task.xpReward} XP</span>
                   </div>
                 </div>
               </Card>
             </ScrollReveal>
-          )}
 
-          <ScrollReveal direction="up" delay={0.1}>
-            <Card variant="elevated" padding="lg">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-palette-primary-500 to-palette-secondary-400 shadow-glow-sm flex items-center justify-center flex-shrink-0">
-                  <span className="text-heading-lg font-bold text-white font-mono">Day {dayNumber}</span>
-                </div>
-                <div className="flex-1">
-                  <h2 className="text-heading-lg font-semibold text-palette-neutral-50">{task.title}</h2>
-                </div>
-                <div className="flex items-center gap-2 flex-shrink-0">
-                  <Badge variant="outline" size="sm">{task.category}</Badge>
-                  <Badge variant={task.difficulty === "hard" ? "destructive" : task.difficulty === "medium" ? "warning" : "success"} size="sm">{task.difficulty}</Badge>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-4 text-body-sm text-palette-neutral-400">
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-palette-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                  <span>{task.estimatedMinutes} minutes</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-palette-accent-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                  <span>+{task.xpReward} XP</span>
-                </div>
-              </div>
-            </Card>
-          </ScrollReveal>
-
-          <ScrollReveal direction="up" delay={0.15}>
-            <Card variant="elevated" padding="lg">
-              <CardHeader><CardTitle>Acceptance Criteria</CardTitle></CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  {[
-                    "Code compiles and runs without errors",
-                    "Core functionality is implemented and tested",
-                    "Code follows clean naming conventions",
-                    "GitHub commit message is descriptive",
-                    "LinkedIn post explains what you learned",
-                    "Submission completed within the time estimate",
-                  ].map((criteria, i) => (
-                    <li key={i} className="flex items-start gap-3 text-body-md text-palette-neutral-300">
-                      <svg className="w-5 h-5 text-palette-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      {criteria}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </ScrollReveal>
-
-          <ScrollReveal direction="up" delay={0.2}>
-            <CoachCard coachMessage={coachMessage} />
-          </ScrollReveal>
-
-          <ScrollReveal direction="up" delay={0.25}>
-            <Card variant="elevated" padding="lg">
-              <CardHeader>
-                <CardTitle>{existingSubmission ? "Submission Confirmed" : "Submit Your Work"}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                {existingSubmission ? (
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3 p-4 bg-palette-green-500/10 border border-palette-green-500/40 rounded-xl backdrop-blur-sm">
-                      <div className="w-10 h-10 rounded-full bg-palette-green-500/20 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-5 h-5 text-palette-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            <ScrollReveal direction="up" delay={0.15}>
+              <Card variant="elevated" padding="lg">
+                <CardHeader><CardTitle>Acceptance Criteria</CardTitle></CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    {[
+                      "Code compiles and runs without errors",
+                      "Core functionality is implemented and tested",
+                      "Code follows clean naming conventions",
+                      "GitHub commit message is descriptive",
+                      "LinkedIn post explains what you learned",
+                      "Submission completed within the time estimate",
+                    ].map((criteria, i) => (
+                      <li key={i} className="flex items-start gap-3 text-body-md text-palette-neutral-300">
+                        <svg className="w-5 h-5 text-palette-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                      </div>
-                      <div>
-                        <p className="text-body-sm font-semibold text-palette-green-300">Already submitted!</p>
-                        <p className="text-body-sm text-palette-green-300/80">+{task.xpReward} XP earned.</p>
-                      </div>
-                    </div>
-                    {existingSubmission.feedback && (
-                      <div className="p-4 bg-palette-primary-500/10 border border-palette-primary-500/40 rounded-xl backdrop-blur-sm">
-                        <p className="text-body-sm font-semibold text-palette-primary-300">Feedback</p>
-                        <p className="mt-1 text-body-sm text-palette-primary-200/90">{existingSubmission.feedback}</p>
-                        {existingSubmission.score && (
-                          <p className="mt-2 text-body-sm font-mono font-bold text-palette-primary-300">Score: {existingSubmission.score}/100</p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <SubmissionForm dayNumber={dayNumber} xpReward={task.xpReward} />
-                )}
-              </CardContent>
-            </Card>
-          </ScrollReveal>
+                        {criteria}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </ScrollReveal>
 
-          <ScrollReveal direction="up" delay={0.3}>
-            <div className="flex flex-col sm:flex-row gap-4 mt-6">
-              {dayNumber > 1 && (
-                <Link href={`/day/${dayNumber - 1}`} className="flex-1">
-                  <Button variant="outline" className="w-full">← Day {dayNumber - 1}</Button>
+            <ScrollReveal direction="up" delay={0.2}>
+              <CoachCard coachMessage={coachMessage} />
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.25}>
+              <Card variant="elevated" padding="lg">
+                <CardHeader>
+                  <CardTitle>{existingSubmission ? "Submission Confirmed" : "Submit Your Work"}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {existingSubmission ? (
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3 p-4 bg-palette-green-500/10 border border-palette-green-500/40 rounded-xl backdrop-blur-sm">
+                        <div className="w-10 h-10 rounded-full bg-palette-green-500/20 flex items-center justify-center flex-shrink-0">
+                          <svg className="w-5 h-5 text-palette-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-body-sm font-semibold text-palette-green-300">Already submitted!</p>
+                          <p className="text-body-sm text-palette-green-300/80">+{task.xpReward} XP earned.</p>
+                        </div>
+                      </div>
+                      {existingSubmission.feedback && (
+                        <div className="p-4 bg-palette-primary-500/10 border border-palette-primary-500/40 rounded-xl backdrop-blur-sm">
+                          <p className="text-body-sm font-semibold text-palette-primary-300">Feedback</p>
+                          <p className="mt-1 text-body-sm text-palette-primary-200/90">{existingSubmission.feedback}</p>
+                          {existingSubmission.score && (
+                            <p className="mt-2 text-body-sm font-mono font-bold text-palette-primary-300">Score: {existingSubmission.score}/100</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <SubmissionForm dayNumber={dayNumber} xpReward={task.xpReward} />
+                  )}
+                </CardContent>
+              </Card>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" delay={0.3}>
+              <div className="flex flex-col sm:flex-row gap-4 mt-6">
+                {dayNumber > 1 && (
+                  <Link href={`/day/${dayNumber - 1}`} className="flex-1">
+                    <Button variant="outline" className="w-full">Day {dayNumber - 1}</Button>
+                  </Link>
+                )}
+                {dayNumber < track.totalDays && (
+                  <Link href={`/day/${dayNumber + 1}`} className="flex-1">
+                    <Button variant="outline" className="w-full">Day {dayNumber + 1}</Button>
+                  </Link>
+                )}
+                <Link href="/dashboard" className="flex-1">
+                  <Button variant="ghost" className="w-full">Dashboard</Button>
                 </Link>
-              )}
-              {dayNumber < track.totalDays && (
-                <Link href={`/day/${dayNumber + 1}`} className="flex-1">
-                  <Button variant="outline" className="w-full">Day {dayNumber + 1} →</Button>
-                </Link>
-              )}
-              <Link href="/dashboard" className="flex-1">
-                <Button variant="ghost" className="w-full">Dashboard</Button>
-              </Link>
-            </div>
-          </ScrollReveal>
-        </div>
-      </PageContainer>
-      <MobileNav />
-    </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </PageContainer>
+        <FloatingActionButton />
+        <ContextualNav />
+      </div>
+    </PageTransition>
   );
 }
