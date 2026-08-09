@@ -19,25 +19,25 @@ export function Scene3D() {
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Mesh />
         <OrbitControls enablePan={false} enableZoom={false} autoRotate={true} autoRotateSpeed={0.5} />
-      </Canvas>
-      <Html
-        wrapperClass="absolute inset-0 pointer-events-none"
-        prepend
-        center
-        fullscreen
-        distanceFactor={10}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-center px-4"
+        <Html
+          wrapperClass="absolute inset-0 pointer-events-none"
+          prepend
+          center
+          fullscreen
+          distanceFactor={10}
         >
-          <p className="text-caption text-palette-neutral-500 dark:text-palette-neutral-400">
-            Optional 3D Accent
-          </p>
-        </motion.div>
-      </Html>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="text-center px-4"
+          >
+            <p className="text-caption text-palette-neutral-500 dark:text-palette-neutral-400">
+              Optional 3D Accent
+            </p>
+          </motion.div>
+        </Html>
+      </Canvas>
     </div>
   );
 }

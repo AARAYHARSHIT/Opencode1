@@ -15,11 +15,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
     
     const variantStyles = {
-      primary: "bg-palette-primary-600 text-white hover:bg-palette-primary-700 focus-visible:ring-palette-primary-500 dark:bg-palette-primary-500 dark:hover:bg-palette-primary-600",
-      secondary: "bg-palette-neutral-100 text-palette-neutral-900 hover:bg-palette-neutral-200 focus-visible:ring-palette-neutral-400 dark:bg-palette-neutral-800 dark:text-palette-neutral-50 dark:hover:bg-palette-neutral-700",
-      outline: "border-2 border-palette-primary-600 text-palette-primary-600 hover:bg-palette-primary-50 focus-visible:ring-palette-primary-500 dark:border-palette-primary-400 dark:text-palette-primary-400 dark:hover:bg-palette-primary-950/20",
-      ghost: "text-palette-neutral-700 hover:bg-palette-neutral-100 focus-visible:ring-palette-neutral-400 dark:text-palette-neutral-300 dark:hover:bg-palette-neutral-800",
-      destructive: "bg-palette-red-600 text-white hover:bg-palette-red-700 focus-visible:ring-palette-red-500",
+      primary: "bg-gradient-to-b from-palette-primary-500 to-palette-primary-600 text-white shadow-md shadow-palette-primary-900/40 hover:shadow-glow hover:brightness-110 focus-visible:ring-palette-primary-400",
+      secondary: "glass-strong text-palette-neutral-50 hover:bg-palette-neutral-800/60 hover:border-white/25 focus-visible:ring-palette-secondary-400",
+      outline: "glass text-palette-neutral-100 hover:border-palette-primary-400/60 hover:text-white hover:bg-palette-primary-500/10 focus-visible:ring-palette-primary-400",
+      ghost: "text-palette-neutral-400 hover:text-palette-neutral-100 hover:bg-palette-neutral-800/60 focus-visible:ring-palette-neutral-400",
+      destructive: "bg-gradient-to-b from-palette-red-500 to-palette-red-700 text-white hover:brightness-110 focus-visible:ring-palette-red-500",
     };
     
     const sizeStyles = {
