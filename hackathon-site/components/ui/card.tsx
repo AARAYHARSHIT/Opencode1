@@ -44,7 +44,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 
 Card.displayName = "Card";
 
-export interface CardHeaderProps extends HTMLAttributes<HTMLDivElement> {}
+export type CardHeaderProps = HTMLAttributes<HTMLDivElement>;
 export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ children, className = "", ...props }, ref) => (
     <div ref={ref} className={`mb-4 ${className}`} {...props}>{children}</div>
@@ -52,7 +52,7 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
 );
 CardHeader.displayName = "CardHeader";
 
-export interface CardTitleProps extends HTMLAttributes<HTMLHeadingElement> {}
+export type CardTitleProps = HTMLAttributes<HTMLHeadingElement>;
 export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
   ({ children, className = "", ...props }, ref) => (
     <h3 ref={ref} className={`text-heading-lg font-semibold text-palette-neutral-900 dark:text-palette-neutral-50 ${className}`} {...props}>{children}</h3>
@@ -60,7 +60,7 @@ export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
 );
 CardTitle.displayName = "CardTitle";
 
-export interface CardDescriptionProps extends HTMLAttributes<HTMLParagraphElement> {}
+export type CardDescriptionProps = HTMLAttributes<HTMLParagraphElement>;
 export const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
   ({ children, className = "", ...props }, ref) => (
     <p ref={ref} className={`mt-1 text-body-md text-palette-neutral-600 dark:text-palette-neutral-400 ${className}`} {...props}>{children}</p>
@@ -68,7 +68,7 @@ export const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionP
 );
 CardDescription.displayName = "CardDescription";
 
-export interface CardContentProps extends HTMLAttributes<HTMLDivElement> {}
+export type CardContentProps = HTMLAttributes<HTMLDivElement>;
 export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
   ({ children, className = "", ...props }, ref) => (
     <div ref={ref} className={className} {...props}>{children}</div>
@@ -76,7 +76,7 @@ export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
 );
 CardContent.displayName = "CardContent";
 
-export interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {}
+export type CardFooterProps = HTMLAttributes<HTMLDivElement>;
 export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
   ({ children, className = "", ...props }, ref) => (
     <div ref={ref} className={`mt-4 pt-4 border-t border-palette-neutral-200 dark:border-palette-neutral-800 flex items-center gap-3 ${className}`} {...props}>{children}</div>

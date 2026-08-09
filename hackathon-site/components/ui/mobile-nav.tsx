@@ -3,14 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "motion/react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { motion } from "motion/react";
 import { StreakFlame } from "@/components/ui/streak-display";
-import { getChallengeData, getStreakInfo, getTodayDayNumber } from "@/lib/data";
+import { getStreakInfo, getTodayDayNumber } from "@/lib/data";
 
-interface NavItem {
+export interface NavItem {
   href: string;
   label: string;
   icon: React.ReactNode;

@@ -67,7 +67,7 @@ export function getDayStatus(day: number, variant: DataVariant = "default"): Day
   return "upcoming";
 }
 
-function getTodayDayNumber(variant: DataVariant = "default"): number {
+export function getTodayDayNumber(variant: DataVariant = "default"): number {
   const track = getTrack(variant);
   const startDate = new Date(track.startDate);
   const today = new Date();
@@ -167,7 +167,7 @@ export function hasAnyData(variant: DataVariant = "default"): boolean {
 }
 
 export function getAvailableVariants(): DataVariant[] {
-  return challengeData.variants.map((v) => v.variant);
+  return typedChallengeData.variants.map((v) => v.variant);
 }
 
 export { type ChallengeData, type DailyTask, type Submission, type StreakState, type DayStatus, type DayData, type DashboardStats, type DataVariant } from "@/lib/types";
